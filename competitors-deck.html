@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARVR Israel - US Competitive Landscape Deck</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-1: #0f0c29;
+            --bg-2: #302b63;
+            --bg-3: #24243e;
+            --accent-pink: #f5576c;
+            --accent-purple: #6366f1;
+            --accent-magenta: #ec4899;
+            --accent-orange: #f59e0b;
+            --accent-green: #10b981;
+            --text: #fff;
+            --text-dim: #c4b5fd;
+            --text-muted: #aaa;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--bg-1), var(--bg-2), var(--bg-3));
+            color: var(--text);
+            overflow: hidden;
+        }
+
+        /* ========== DECK FRAME ========== */
+        .deck {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            padding: 50px 70px 90px 70px;
+            display: none;
+            flex-direction: column;
+            overflow-y: auto;
+            animation: fadeIn 0.35s ease;
+        }
+
+        .slide.active { display: flex; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ========== SLIDE HEADER ========== */
+        .slide-eyebrow {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .slide-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #f093fb, #f5576c, #fda085);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+            line-height: 1.15;
+        }
+
+        .slide-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            margin-bottom: 28px;
+        }
+
+        /* ========== TITLE SLIDE ========== */
+        .title-slide {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .title-slide h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #f093fb, #f5576c, #fda085);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 14px;
+            line-height: 1.05;
+        }
+
+        .title-slide .tag {
+            font-size: 1.4rem;
+            color: var(--text-dim);
+            margin-bottom: 36px;
+        }
+
+        .team {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+
+        .team-member {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+            color: var(--text-dim);
+        }
+
+        .team-member .avatar {
+            width: 38px; height: 38px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 0.85rem; color: #fff;
+        }
+        .avatar-rk { background: linear-gradient(135deg, #6366f1, #818cf8); }
+        .avatar-mb { background: linear-gradient(135deg, #ec4899, #f472b6); }
+        .avatar-yj { background: linear-gradient(135deg, #f59e0b, #fbbf24); }
+
+        .pill {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: var(--text-dim);
+            margin: 4px;
+        }
+
+        /* ========== GRIDS ========== */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+
+        .card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 14px;
+            padding: 18px 20px;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            background: rgba(255,255,255,0.07);
+        }
+
+        .card h3 {
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+            display: flex; align-items: center; gap: 8px;
+        }
+
+        .card p, .card li {
+            font-size: 0.92rem;
+            color: #ddd;
+            line-height: 1.5;
+        }
+
+        .card ul { padding-left: 18px; }
+
+        .stat {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #f093fb, #f5576c, #fda085);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 6px;
+        }
+
+        /* ========== REFERENCE LINKS ========== */
+        sup.ref {
+            font-size: 0.7em;
+            color: var(--accent-orange);
+            font-weight: 700;
+        }
+
+        sup.ref a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        sup.ref a:hover { text-decoration: underline; }
+
+        .src-line {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-top: 8px;
+            border-top: 1px dashed rgba(255,255,255,0.1);
+            padding-top: 8px;
+            word-break: break-word;
+        }
+
+        .src-line a {
+            color: var(--accent-orange);
+            text-decoration: none;
+        }
+        .src-line a:hover { text-decoration: underline; }
+
+        /* ========== COMPETITOR CARD ========== */
+        .comp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            gap: 16px;
+        }
+
+        .comp-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .comp-tags {
+            display: flex; flex-wrap: wrap; gap: 6px;
+            margin-top: 6px;
+        }
+
+        .comp-tag {
+            font-size: 0.72rem;
+            padding: 3px 9px;
+            border-radius: 6px;
+            background: rgba(99,102,241,0.18);
+            color: #c7d2fe;
+            border: 1px solid rgba(99,102,241,0.3);
+        }
+
+        .comp-tag.direct { background: rgba(245,87,108,0.18); color: #fecaca; border-color: rgba(245,87,108,0.35); }
+        .comp-tag.adjacent { background: rgba(245,158,11,0.18); color: #fcd34d; border-color: rgba(245,158,11,0.35); }
+        .comp-tag.related { background: rgba(16,185,129,0.18); color: #6ee7b7; border-color: rgba(16,185,129,0.35); }
+
+        .comp-fact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 6px;
+        }
+
+        .fact {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 10px;
+            padding: 12px 14px;
+        }
+
+        .fact .label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .fact .value {
+            font-size: 0.95rem;
+            color: #eee;
+            line-height: 1.45;
+        }
+
+        .summary-box {
+            background: rgba(255,255,255,0.04);
+            border-left: 3px solid var(--accent-magenta);
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin: 14px 0;
+            font-size: 0.95rem;
+            color: #eee;
+            line-height: 1.55;
+        }
+
+        .summary-box.threat-low    { border-left-color: var(--accent-green); }
+        .summary-box.threat-medium { border-left-color: var(--accent-orange); }
+        .summary-box.threat-high   { border-left-color: var(--accent-pink); }
+
+        /* ========== COMPARISON TABLE ========== */
+        .compare-wrap { overflow-x: auto; }
+
+        table.compare {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            font-size: 0.85rem;
+        }
+
+        table.compare th, table.compare td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        table.compare th {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-dim);
+            background: rgba(255,255,255,0.04);
+        }
+
+        table.compare tbody tr:hover { background: rgba(255,255,255,0.04); }
+
+        .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; vertical-align: middle; }
+        .dot.direct { background: var(--accent-pink); }
+        .dot.adjacent { background: var(--accent-orange); }
+        .dot.related { background: var(--accent-green); }
+
+        /* ========== GLOSSARY ========== */
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 24px;
+        }
+
+        .glossary-item {
+            display: flex;
+            gap: 12px;
+            padding: 8px 0;
+            border-bottom: 1px dashed rgba(255,255,255,0.07);
+        }
+
+        .glossary-term {
+            font-weight: 700;
+            color: #fbbf24;
+            min-width: 110px;
+            font-size: 0.95rem;
+        }
+
+        .glossary-def {
+            color: #ddd;
+            font-size: 0.9rem;
+            line-height: 1.45;
+        }
+
+        /* ========== TAKEAWAYS ========== */
+        .takeaway {
+            display: flex;
+            gap: 16px;
+            padding: 14px 18px;
+            margin-bottom: 12px;
+            background: rgba(255,255,255,0.04);
+            border-left: 4px solid var(--accent-purple);
+            border-radius: 10px;
+        }
+
+        .takeaway:nth-child(2) { border-left-color: var(--accent-magenta); }
+        .takeaway:nth-child(3) { border-left-color: var(--accent-orange); }
+        .takeaway:nth-child(4) { border-left-color: var(--accent-green); }
+        .takeaway:nth-child(5) { border-left-color: var(--accent-pink); }
+
+        .takeaway .num {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #fff;
+            min-width: 38px;
+            line-height: 1;
+        }
+
+        .takeaway .body {
+            font-size: 0.95rem;
+            color: #eee;
+            line-height: 1.55;
+        }
+
+        .takeaway .body b { color: #fff; }
+
+        /* ========== REFERENCES LIST ========== */
+        .ref-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px 20px;
+            font-size: 0.8rem;
+            counter-reset: refnum;
+        }
+
+        .ref-item {
+            padding: 5px 0;
+            border-bottom: 1px dashed rgba(255,255,255,0.06);
+            color: #ccc;
+            display: flex;
+            gap: 8px;
+        }
+
+        .ref-item .n {
+            color: var(--accent-orange);
+            font-weight: 700;
+            min-width: 26px;
+        }
+
+        .ref-item a {
+            color: #93c5fd;
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .ref-item a:hover { text-decoration: underline; }
+
+        /* ========== NAV ========== */
+        .nav {
+            position: fixed;
+            bottom: 18px;
+            left: 0; right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 18px;
+            z-index: 100;
+        }
+
+        .nav-btn {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            transition: background 0.2s;
+        }
+
+        .nav-btn:hover { background: rgba(255,255,255,0.18); }
+
+        .nav-counter {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            min-width: 70px;
+            text-align: center;
+        }
+
+        .slide-badge {
+            position: absolute;
+            top: 22px; right: 28px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        .progress {
+            position: fixed;
+            top: 0; left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #f093fb, #f5576c, #fda085);
+            width: 0%;
+            z-index: 200;
+            transition: width 0.3s ease;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 900px) {
+            .slide { padding: 30px 24px 90px 24px; }
+            .slide-title { font-size: 1.6rem; }
+            .title-slide h1 { font-size: 2.4rem; }
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+            .glossary-grid, .ref-list { grid-template-columns: 1fr; }
+            .comp-fact-grid { grid-template-columns: 1fr; }
+            .comp-name { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress" id="progress"></div>
+
+    <div class="deck" id="deck">
+
+        <!-- ========== SLIDE 1: TITLE ========== -->
+        <section class="slide title-slide active">
+            <h1>US Competitive Landscape</h1>
+            <p class="tag">Who is already training nurses, doctors and surgeons with VR / AR in the United States?</p>
+            <div>
+                <span class="pill">ARVR Israel</span>
+                <span class="pill">Healthcare VR / AR Training</span>
+                <span class="pill">US Market Entry</span>
+            </div>
+            <div class="team">
+                <div class="team-member"><div class="avatar avatar-rk">RK</div><span>Rom Kurtz</span></div>
+                <div class="team-member"><div class="avatar avatar-mb">MB</div><span>Maayan Bohak</span></div>
+                <div class="team-member"><div class="avatar avatar-yj">YJ</div><span>Yoni Jacobs</span></div>
+            </div>
+            <p style="margin-top:30px;color:#888;font-size:0.85rem;">Tel Aviv University &mdash; MBA &mdash; Startup Consulting Class &mdash; 2026</p>
+        </section>
+
+        <!-- ========== SLIDE 2: WHY THE US ========== -->
+        <section class="slide">
+            <div class="slide-eyebrow">Slide 2 / Context</div>
+            <h2 class="slide-title">Why the US Market Matters</h2>
+            <p class="slide-subtitle">The US is the biggest and fastest growing healthcare VR / AR market in the world.</p>
+
+            <div class="grid-3" style="margin-bottom:18px;">
+                <div class="card">
+                    <div class="stat">$1.14B</div>
+                    <div class="stat-label">US healthcare AR / VR market size in 2025<sup class="ref"><a href="https://www.grandviewresearch.com/industry-analysis/us-augmented-reality-virtual-reality-healthcare-market-report" target="_blank">[1]</a></sup></div>
+                </div>
+                <div class="card">
+                    <div class="stat">$2.34B</div>
+                    <div class="stat-label">Forecast for 2030 &mdash; 15.4% CAGR (yearly growth rate)<sup class="ref"><a href="https://www.grandviewresearch.com/industry-analysis/us-augmented-reality-virtual-reality-healthcare-market-report" target="_blank">[1]</a></sup></div>
+                </div>
+                <div class="card">
+                    <div class="stat">~10%</div>
+                    <div class="stat-label">US RN (Registered Nurse) shortage in 2026 &mdash; ~350K missing FTEs (Full Time Equivalents)<sup class="ref"><a href="https://prolinkworks.com/perspectives/806-of-us-nursing-demand-goes-unmet-in-2026-what-health-systems-can-do-now" target="_blank">[2]</a></sup></div>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Big pain point: training capacity</h3>
+                    <p>Nursing schools turned down <b>80,000+ applicants</b> because they did not have enough faculty, classrooms or clinical sites. VR lets schools and hospitals train more nurses, faster, cheaper.<sup class="ref"><a href="https://blog.gaumard.com/using-simulation-as-a-strategy-to-reduce-the-nursing-shortage-in-wyoming/" target="_blank">[3]</a></sup></p>
+                </div>
+                <div class="card">
+                    <h3>Investors and hospitals are buying</h3>
+                    <p>Healthcare is the fastest growing VR vertical in the US &mdash; <b>~27% yearly growth</b>. The FDA has cleared <b>69 therapeutic VR devices</b> (as of Sep 2024) and CMS now reimburses some VR codes.<sup class="ref"><a href="https://www.mordorintelligence.com/industry-reports/united-states-virtual-reality-market" target="_blank">[4]</a></sup></p>
+                </div>
+            </div>
+
+            <p class="src-line">Sources: [1] Grand View Research, [2] Prolink / HRSA, [3] Gaumard / AACN, [4] Mordor Intelligence. Full links on the References slide.</p>
+        </section>
+
+        <!-- ========== SLIDE 3: GLOSSARY ========== -->
+        <section class="slide">
+            <div class="slide-eyebrow">Slide 3 / Glossary</div>
+            <h2 class="slide-title">Short Glossary &mdash; All The Initials</h2>
+            <p class="slide-subtitle">Quick reference for every short word we use in this deck.</p>
+
+            <div class="glossary-grid">
+                <div class="glossary-item"><div class="glossary-term">AR</div><div class="glossary-def">Augmented Reality &mdash; digital things added on top of the real world (like glasses showing the patient's veins on the skin).</div></div>
+                <div class="glossary-item"><div class="glossary-term">VR</div><div class="glossary-def">Virtual Reality &mdash; you put a headset and you are inside a fully digital world (like a virtual hospital room).</div></div>
+                <div class="glossary-item"><div class="glossary-term">XR</div><div class="glossary-def">Extended Reality &mdash; the umbrella word for AR + VR + Mixed Reality.</div></div>
+                <div class="glossary-item"><div class="glossary-term">HMD</div><div class="glossary-def">Head Mounted Display &mdash; the headset you wear (Meta Quest, Apple Vision Pro, HoloLens).</div></div>
+                <div class="glossary-item"><div class="glossary-term">FDA</div><div class="glossary-def">Food and Drug Administration &mdash; US authority that approves medical devices and software.</div></div>
+                <div class="glossary-item"><div class="glossary-term">510(k)</div><div class="glossary-def">FDA clearance path for medical devices that are similar to ones already on the market.</div></div>
+                <div class="glossary-item"><div class="glossary-term">CMS</div><div class="glossary-def">Centers for Medicare &amp; Medicaid Services &mdash; the US government healthcare payer.</div></div>
+                <div class="glossary-item"><div class="glossary-term">CPT</div><div class="glossary-def">Current Procedural Terminology &mdash; the billing codes hospitals use to get paid.</div></div>
+                <div class="glossary-item"><div class="glossary-term">RN / LPN</div><div class="glossary-def">Registered Nurse / Licensed Practical Nurse &mdash; the two main nurse roles in the US.</div></div>
+                <div class="glossary-item"><div class="glossary-term">EMS</div><div class="glossary-def">Emergency Medical Services &mdash; paramedics, ambulance crews.</div></div>
+                <div class="glossary-item"><div class="glossary-term">DOD / DAF</div><div class="glossary-def">Department of Defense / Department of the Air Force &mdash; US military buyers.</div></div>
+                <div class="glossary-item"><div class="glossary-term">SBIR / STTR</div><div class="glossary-def">Small Business Innovation Research / Tech Transfer &mdash; US government grants for startups.</div></div>
+                <div class="glossary-item"><div class="glossary-term">CAGR</div><div class="glossary-def">Compound Annual Growth Rate &mdash; the average yearly growth percentage.</div></div>
+                <div class="glossary-item"><div class="glossary-term">GTM</div><div class="glossary-def">Go To Market &mdash; the strategy for how a company sells and reaches customers.</div></div>
+                <div class="glossary-item"><div class="glossary-term">B2B</div><div class="glossary-def">Business to Business &mdash; selling to companies / hospitals (not consumers).</div></div>
+                <div class="glossary-item"><div class="glossary-term">SaaS</div><div class="glossary-def">Software as a Service &mdash; software sold by yearly subscription.</div></div>
+                <div class="glossary-item"><div class="glossary-term">DICOM</div><div class="glossary-def">Digital Imaging and Communications in Medicine &mdash; the standard file format for CT / MRI scans.</div></div>
+                <div class="glossary-item"><div class="glossary-term">CT / MRI</div><div class="glossary-def">Computed Tomography / Magnetic Resonance Imaging &mdash; medical imaging machines.</div></div>
+                <div class="glossary-item"><div class="glossary-term">CMF / T</div><div class="glossary-def">Craniomaxillofacial / Trauma &mdash; surgery of the face, skull and trauma cases.</div></div>
+                <div class="glossary-item"><div class="glossary-term">TCCC</div><div class="glossary-def">Tactical Combat Casualty Care &mdash; military battlefield medical protocol.</div></div>
+                <div class="glossary-item"><div class="glossary-term">ACLS</div><div class="glossary-def">Advanced Cardiovascular Life Support &mdash; emergency cardiac protocol that all clinicians must certify on.</div></div>
+                <div class="glossary-item"><div class="glossary-term">OB / OBGYN</div><div class="glossary-def">Obstetrics / Obstetrics-Gynecology &mdash; childbirth and women's health.</div></div>
+                <div class="glossary-item"><div class="glossary-term">FTE</div><div class="glossary-def">Full Time Equivalent &mdash; one full time job worth of hours.</div></div>
+                <div class="glossary-item"><div class="glossary-term">HRSA</div><div class="glossary-def">Health Resources and Services Administration &mdash; US federal health workforce agency.</div></div>
+            </div>
+        </section>
+
+        <!-- ========== SLIDE 4: COMPETITIVE MAP ========== -->
+        <section class="slide">
+            <div class="slide-eyebrow">Slide 4 / Map</div>
+            <h2 class="slide-title">The 3 Competitive Layers in US Healthcare XR</h2>
+            <p class="slide-subtitle">ARVR Israel competes mostly in <b>Layer 1</b> (nursing training). Layers 2 and 3 are adjacent &mdash; we should know them so we can position smart.</p>
+
+            <div class="grid-3" style="margin-bottom:18px;">
+                <div class="card" style="border-top:3px solid var(--accent-pink);">
+                    <h3><span class="dot direct"></span> Layer 1: Direct competitors</h3>
+                    <p style="margin-bottom:8px;"><b>VR training for nurses, EMS and basic procedures.</b> Same buyer (nursing schools, hospital training departments), same problem.</p>
+                    <p style="font-size:0.85rem;color:#bbb;">UbiSim, Oxford Medical Simulation (OMS), Health Scholars / Relias, SimX.</p>
+                </div>
+                <div class="card" style="border-top:3px solid var(--accent-orange);">
+                    <h3><span class="dot adjacent"></span> Layer 2: Adjacent competitors</h3>
+                    <p style="margin-bottom:8px;"><b>VR surgical training.</b> Different buyer (surgeons, medical device companies) but same "VR in healthcare" budget pool.</p>
+                    <p style="font-size:0.85rem;color:#bbb;">Osso VR, FundamentalVR, PrecisionOS.</p>
+                </div>
+                <div class="card" style="border-top:3px solid var(--accent-green);">
+                    <h3><span class="dot related"></span> Layer 3: Related (AR in the OR)</h3>
+                    <p style="margin-bottom:8px;"><b>AR for real surgeries</b> &mdash; planning and navigation, not training. Useful to understand the full XR landscape.</p>
+                    <p style="font-size:0.85rem;color:#bbb;">Medivis, ImmersiveTouch, Augmedics.</p>
+                </div>
+            </div>
+
+            <div class="summary-box threat-medium">
+                <b>Why this matters for ARVR Israel:</b> the most competitive zone is nursing / procedural training (Layer 1). The good news &mdash; only 3 to 4 serious players, and the market is much bigger than any of them today. Plenty of room. The bad news &mdash; UbiSim (owned by Labster) and Osso VR (entering nursing) are well funded and moving fast.
+            </div>
+        </section>
+
+        <!-- ========== SLIDE 5: UBISIM ========== -->
+        <section class="slide">
+            <div class="slide-eyebrow">Slide 5 / Layer 1 &mdash; Direct Competitor</div>
+            <div class="comp-header">
+                <div>
+                    <div class="comp-name">UbiSim (by Labster)</div>
+                    <div class="comp-tags">
+                        <span class="comp-tag direct">Direct competitor</span>
+                        <span class="comp-tag">VR nursing training</span>
+                        <span class="comp-tag">Boston, USA</span>
+                    </div>
+                </div>
+                <span class="slide-badge">Slide 5</span>
+            </div>
+
+            <p style="color:#ddd;font-size:0.95rem;margin-bottom:14px;">The most direct competitor &mdash; "the world's first VR training platform made by nurses for nurses". Almost the same pitch as ARVR Israel.<sup class="ref"><a href="https://www.prnewswire.com/news-releases/labster-to-acquire-worlds-first-vr-training-platform-for-nursing-301400284.html" target="_blank">[5]</a></sup></p>
+
+            <div class="comp-fact-grid">
+                <div class="fact">
+                    <div class="label">Focus</div>
+                    <div class="value">VR clinical scenarios for nursing students &mdash; clinical judgment, communication, patient-centric care.<sup class="ref"><a href="https://www.ubisimvr.com/in-the-news/updates-2025" target="_blank">[6]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Funding / Ownership</div>
+                    <div class="value">Acquired by Labster in <b>Oct 2021</b><sup class="ref"><a href="https://www.prnewswire.com/news-releases/labster-to-acquire-worlds-first-vr-training-platform-for-nursing-301400284.html" target="_blank">[5]</a></sup>. Labster total funding: <b>$147M</b>, last round <b>$47M in 2022</b>.<sup class="ref"><a href="https://www.businesswire.com/news/home/20220404005111/en/Labster-Secures-%2447M-in-New-Funding-Tranche-to-Expand-Global-Opportunities-for-Virtual-Science-Laboratory-Simulations" target="_blank">[7]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Reach</div>
+                    <div class="value">Labster + UbiSim reach <b>6 million learners in 3,000 institutions across 100 countries</b> (Jan 2025).<sup class="ref"><a href="https://www.prweb.com/releases/labster-strengthens-leadership-team-with-distinguished-healthcare-and-education-experts-302357001.html" target="_blank">[8]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Awards / Validation</div>
+                    <div class="value">Named <b>TIME Best Invention of 2024</b>.<sup class="ref"><a href="https://www.prweb.com/releases/labster-strengthens-leadership-team-with-distinguished-healthcare-and-education-experts-302357001.html" target="_blank">[8]</a></sup> AI Narrative Analysis launched <b>Dec 2025</b>.<sup class="ref"><a href="https://www.prnewswire.com/news-releases/ubisim-brings-ai-driven-insights-to-nursing-education-302626860.html" target="_blank">[9]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Hardware &amp; Partnerships</div>
+                    <div class="value">Runs on Meta Quest VR headsets. Three-year partnership with <b>HCT</b> &mdash; the Philippines' largest nursing curriculum provider, <b>supported by Meta</b>.<sup class="ref"><a href="https://www.prweb.com/releases/labster-strengthens-leadership-team-with-distinguished-healthcare-and-education-experts-302357001.html" target="_blank">[8]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Pricing model</div>
+                    <div class="value">B2B SaaS subscription to nursing schools and hospital systems &mdash; "Intuitive Editor" so faculty can build their own scenarios.<sup class="ref"><a href="https://www.ubisimvr.com/in-the-news/updates-2025" target="_blank">[6]</a></sup></div>
+                </div>
+            </div>
+
+            <div class="summary-box threat-high">
+                <b>Threat level: HIGH.</b> Almost identical positioning to ARVR. Already at scale in the US with strong parent company (Labster, backed by Andreessen Horowitz). ARVR needs a clear differentiation &mdash; deeper procedural realism, specific verticals like geriatrics or rehab (where ARVR already wins in Israel), or better price for community colleges.
+            </div>
+
+            <p class="src-line">Sources: [5] PRNewswire (acquisition), [6] UbiSim, [7] BusinessWire (Labster $47M / $147M), [8] PRWeb Labster (6M learners / 3,000 institutions / 100 countries / TIME / HCT partnership), [9] PRNewswire (AI Narrative Analysis).</p>
+        </section>
+
+        <!-- ========== SLIDE 6: OXFORD MEDICAL SIMULATION ========== -->
+        <section class="slide">
+            <div class="slide-eyebrow">Slide 6 / Layer 1 &mdash; Direct Competitor</div>
+            <div class="comp-header">
+                <div>
+                    <div class="comp-name">Oxford Medical Simulation (OMS)</div>
+                    <div class="comp-tags">
+                        <span class="comp-tag direct">Direct competitor</span>
+                        <span class="comp-tag">VR clinical training</span>
+                        <span class="comp-tag">London + Somerville, MA</span>
+                    </div>
+                </div>
+                <span class="slide-badge">Slide 6</span>
+            </div>
+
+            <p style="color:#ddd;font-size:0.95rem;margin-bottom:14px;">UK startup that already opened a US office in Massachusetts &mdash; the US is now their #1 target market.<sup class="ref"><a href="https://thenextweb.com/news/oxford-medical-simulation-secures-5m-growth-financing" target="_blank">[10]</a></sup></p>
+
+            <div class="comp-fact-grid">
+                <div class="fact">
+                    <div class="label">Focus</div>
+                    <div class="value">VR + AI simulations for nurses, doctors and allied health &mdash; emergencies, difficult conversations, procedures.<sup class="ref"><a href="https://oxfordmedicalsimulation.com/" target="_blank">[11]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Funding</div>
+                    <div class="value"><b>$12.6M Series A</b> (Jan 2024, Frog Capital)<sup class="ref"><a href="https://oxfordmedicalsimulation.com/oxford-medical-simulation-raises-series-a-funding/" target="_blank">[12]</a></sup> + <b>&pound;5M growth round</b> (Mar 2026, Salica Investments). Total ~$19.7M to date per PitchBook.<sup class="ref"><a href="https://thenextweb.com/news/oxford-medical-simulation-secures-5m-growth-financing" target="_blank">[10]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Reach</div>
+                    <div class="value">150+ healthcare training institutions worldwide. <b>35,000+ simulations per month</b>.<sup class="ref"><a href="https://oxfordmedicalsimulation.com/oxford-medical-simulation-raises-series-a-funding/" target="_blank">[12]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">ROI claim</div>
+                    <div class="value">"74% lower cost vs traditional physical simulation methods" &mdash; this is the same selling point ARVR uses in Israel.<sup class="ref"><a href="https://www.vktr.com/the-wire/oxford-medical-simulation-raises-126-million-in-series-a-funding-to-address-critical-healthcare-training-gap-with-virtual-reality/" target="_blank">[13]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Pain point they exploit</div>
+                    <div class="value"><b>91% of graduating US nurses feel unprepared for clinical practice.</b> Strong "readiness" message.<sup class="ref"><a href="https://oxfordmedicalsimulation.com/oxford-medical-simulation-raises-series-a-funding/" target="_blank">[12]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Hardware</div>
+                    <div class="value">Headset agnostic + desktop VR &mdash; sells where headsets are missing.<sup class="ref"><a href="https://oxfordmedicalsimulation.com/" target="_blank">[11]</a></sup></div>
+                </div>
+            </div>
+
+            <div class="summary-box threat-high">
+                <b>Threat level: HIGH.</b> Same buyer, same message, already in the US, just raised more cash specifically for US expansion. Closest "twin" of ARVR Israel today. Key advantage to attack: ARVR's deeper Israeli clinical scenario library (MDA, hospitals, rehab) and lower price.
+            </div>
+
+            <p class="src-line">Sources: [10] The Next Web, [11] oxfordmedicalsimulation.com, [12] OMS Press Release, [13] VKTR.</p>
+        </section>
+
+        <!-- ========== SLIDE 7: HEALTH SCHOLARS ========== -->
+        <section class="slide">
+            <div class="slide-eyebrow">Slide 7 / Layer 1 &mdash; Direct Competitor</div>
+            <div class="comp-header">
+                <div>
+                    <div class="comp-name">Health Scholars (via Relias)</div>
+                    <div class="comp-tags">
+                        <span class="comp-tag direct">Direct competitor</span>
+                        <span class="comp-tag">VR clinical training</span>
+                        <span class="comp-tag">Colorado, USA</span>
+                    </div>
+                </div>
+                <span class="slide-badge">Slide 7</span>
+            </div>
+
+            <p style="color:#ddd;font-size:0.95rem;margin-bottom:14px;">VR training for high-risk clinical events &mdash; cardiac arrest (ACLS), childbirth emergencies, infection control. Distribution muscle through Relias (huge US healthcare LMS).<sup class="ref"><a href="https://www.prnewswire.com/news-releases/relias-partners-with-health-scholars-leading-healthcare-virtual-reality-company-to-improve-ob-provider-care-301566554.html" target="_blank">[14]</a></sup></p>
+
+            <div class="comp-fact-grid">
+                <div class="fact">
+                    <div class="label">Focus</div>
+                    <div class="value">VR clinical training including <b>ACLS</b> (Advanced Cardiovascular Life Support &mdash; 13 mega-code scenarios)<sup class="ref"><a href="https://www.cbinsights.com/company/health-scholars" target="_blank">[15]</a></sup> and OB (Obstetric) emergencies.<sup class="ref"><a href="https://www.prnewswire.com/news-releases/relias-partners-with-health-scholars-leading-healthcare-virtual-reality-company-to-improve-ob-provider-care-301566554.html" target="_blank">[14]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Funding</div>
+                    <div class="value"><b>$17M Series B</b> (Jan 2020). Investors: Arboretum Ventures, Venture Investors, OSF HealthCare.<sup class="ref"><a href="https://www.prweb.com/releases/health-scholars-the-virtual-reality-healthcare-training-platform-raises-17m-in-series-b-funding-891585215.html" target="_blank">[16]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Distribution power</div>
+                    <div class="value">Partnered with Relias &mdash; trusted by <b>12,000 US healthcare organizations and 4.5M caregivers</b>.<sup class="ref"><a href="https://www.businesswire.com/news/home/20250310741852/en/Innovative-Immersive-Learning-Relias-Expands-VR-Access-to-Solve-Healthcare-Workforce-Training-Challenges" target="_blank">[17]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Notable client</div>
+                    <div class="value"><b>NYC Health + Hospitals</b> deployed Health Scholars OB VR (Jun 2022) as part of its maternal-health simulation program.<sup class="ref"><a href="https://www.prnewswire.com/news-releases/nyc-health--hospitals-debuts-obstetrics-virtual-reality-technology-as-part-of-its-ongoing-comprehensive-maternal-health-simulation-trainings-301569874.html" target="_blank">[23]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Validated</div>
+                    <div class="value">VR infection control training boosted hand hygiene competency by <b>68%</b> (American Journal of Infection Control).<sup class="ref"><a href="https://www.businesswire.com/news/home/20250310741852/en/Innovative-Immersive-Learning-Relias-Expands-VR-Access-to-Solve-Healthcare-Workforce-Training-Challenges" target="_blank">[17]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Platform</div>
+                    <div class="value">"Cloud-based, VR-ready clinical training platform" with simulation management and clinical readiness reporting.<sup class="ref"><a href="https://www.prweb.com/releases/health-scholars-the-virtual-reality-healthcare-training-platform-raises-17m-in-series-b-funding-891585215.html" target="_blank">[16]</a></sup></div>
+                </div>
+            </div>
+
+            <div class="summary-box threat-medium">
+                <b>Threat level: MEDIUM-HIGH.</b> Smaller library than UbiSim but the Relias partnership is a "cheat code" for US hospital distribution. ARVR should look for a similar US distribution partner (LMS, GPO, hospital network) instead of going hospital-by-hospital.
+            </div>
+
+            <p class="src-line">Sources: [14] PRNewswire (Relias x Health Scholars OB), [15] CB Insights (ACLS product), [16] PRWeb ($17M Series B + platform), [17] BusinessWire (Relias 12K orgs + 68% hand hygiene), [23] PRNewswire (NYC Health + Hospitals OB VR).</p>
+        </section>
+
+        <!-- ========== SLIDE 8: SIMX ========== -->
+        <section class="slide">
+            <div class="slide-eyebrow">Slide 8 / Layer 1 &mdash; Direct Competitor</div>
+            <div class="comp-header">
+                <div>
+                    <div class="comp-name">SimX</div>
+                    <div class="comp-tags">
+                        <span class="comp-tag direct">Direct competitor</span>
+                        <span class="comp-tag">Multi-role VR</span>
+                        <span class="comp-tag">San Jose, CA</span>
+                    </div>
+                </div>
+                <span class="slide-badge">Slide 8</span>
+            </div>
+
+            <p style="color:#ddd;font-size:0.95rem;margin-bottom:14px;">Multi-role VR simulation: nurses, doctors, paramedics and military medics. Largest VR-simulated patient case library in the world.<sup class="ref"><a href="https://www.simxvr.com/virtual-reality-medical-simulation-training-for-military/" target="_blank">[18]</a></sup></p>
+
+            <div class="comp-fact-grid">
+                <div class="fact">
+                    <div class="label">Focus</div>
+                    <div class="value">Multiplayer "holodeck-like" VR cases &mdash; talk to virtual patients in natural language. No dropdown menus.<sup class="ref"><a href="https://www.simxvr.com/virtual-reality-medical-simulation-training-for-military/" target="_blank">[18]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Funding pattern</div>
+                    <div class="value">Government-funded growth: <b>$20M+ DoD R&D dollars</b> via the VALOR program with the US Air Force.<sup class="ref"><a href="https://www.simxvr.com/virtual-reality-medical-simulation-training-for-military/" target="_blank">[18]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Recent contracts</div>
+                    <div class="value"><b>$1.25M AFWERX STTR (Phase II)</b> for perioperative training (Dec 2024).<sup class="ref"><a href="https://www.prnewswire.com/news-releases/simx-receives-1-25m-phase-ii-sttr-grant-from-afwerx-to-advance-vr-training-for-perioperative-expeditionary-medical-support-302322663.html" target="_blank">[19]</a></sup> Plus a separate <b>$1.25M STTR for women's health</b> with the Department of the Air Force (2024).<sup class="ref"><a href="https://www.simxvr.com/blog/simx-selected-by-afwerx-to-develop-vr-medical-training-for-womens-health-in-collaboration-with-daf/" target="_blank">[38]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Top clients</div>
+                    <div class="value">Mayo Clinic, Stanford, <b>NYU</b>, University of Pennsylvania, US Air Force.<sup class="ref"><a href="https://www.prnewswire.com/news-releases/simx-receives-1-25m-phase-ii-sttr-grant-from-afwerx-to-advance-vr-training-for-perioperative-expeditionary-medical-support-302322663.html" target="_blank">[19]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Military footprint</div>
+                    <div class="value">Deployed at <b>50+ DoD units</b> and 20+ US Air Force installations.<sup class="ref"><a href="https://www.simxvr.com/virtual-reality-medical-simulation-training-for-military/" target="_blank">[18]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Hardware</div>
+                    <div class="value">Wireless multiplayer on HTC Vive Focus 3 and Meta Quest.<sup class="ref"><a href="https://www.prnewswire.com/news-releases/us-air-force-awards-simx-contract-to-enhance-vr-medical-simulation-training-301672018.html" target="_blank">[20]</a></sup></div>
+                </div>
+            </div>
+
+            <div class="summary-box threat-medium">
+                <b>Threat level: MEDIUM.</b> Wide scope but most growth comes from US military &mdash; not the same buyer as ARVR's nursing schools / hospitals. Key learning: military SBIR / STTR grants are a real go-to-market door for Israeli startups too.
+            </div>
+
+            <p class="src-line">Sources: [18] SimX (VALOR / DoD / 50+ units), [19] PRNewswire ($1.25M perioperative STTR + top clients incl. NYU), [20] PRNewswire (USAF contract / hardware), [38] SimX Blog ($1.25M women's-health STTR).</p>
+        </section>
+
+        <!-- ========== SLIDE 9: OSSO VR ========== -->
+        <section class="slide">
+            <div class="slide-eyebrow">Slide 9 / Layer 2 &mdash; Adjacent (now entering Layer 1!)</div>
+            <div class="comp-header">
+                <div>
+                    <div class="comp-name">Osso VR</div>
+                    <div class="comp-tags">
+                        <span class="comp-tag adjacent">Adjacent &rarr; Direct</span>
+                        <span class="comp-tag">Surgical + now Nursing</span>
+                        <span class="comp-tag">San Francisco</span>
+                    </div>
+                </div>
+                <span class="slide-badge">Slide 9</span>
+            </div>
+
+            <p style="color:#ddd;font-size:0.95rem;margin-bottom:14px;">The leader in VR surgical training &mdash; founded by a Harvard/UCLA pediatric orthopedic surgeon. <b>In Oct 2025 they launched "Osso Nurse Training"</b> &mdash; moving directly into ARVR's main lane.<sup class="ref"><a href="https://www.ossovr.com/press-releases/osso-vr-introduces-new-nursing-procedural-skills-training-platform-opens-early-access-for-healthcare-systems" target="_blank">[21]</a></sup></p>
+
+            <div class="comp-fact-grid">
+                <div class="fact">
+                    <div class="label">Focus</div>
+                    <div class="value">Procedural-skills training. Started in orthopedic surgery, now expanding to nursing onboarding.<sup class="ref"><a href="https://www.ossovr.com/press-releases/osso-vr-introduces-new-nursing-procedural-skills-training-platform-opens-early-access-for-healthcare-systems" target="_blank">[21]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Funding</div>
+                    <div class="value">Total raised: <b>$109.62M</b> across all rounds.<sup class="ref"><a href="https://www.cbinsights.com/company/osso-vr" target="_blank">[52]</a></sup> Last round: <b>$66M Series C</b> (Mar 2022, Oak HC/FT, Kaiser Permanente Ventures, Tiger Global).<sup class="ref"><a href="https://www.ossovr.com/post/press-osso-vr-raises-66-million-to-broaden-access-to-surgical-education-for-healthcare-professionals" target="_blank">[22]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Scale</div>
+                    <div class="value">Used by <b>100,000+ healthcare professionals worldwide</b>.<sup class="ref"><a href="https://www.ossovr.com/press-releases/osso-vr-introduces-new-nursing-procedural-skills-training-platform-opens-early-access-for-healthcare-systems" target="_blank">[21]</a></sup> Modules cover orthopedics, spine, interventional cardiology and general surgery.<sup class="ref"><a href="https://www.ossovr.com/post/press-osso-vr-raises-66-million-to-broaden-access-to-surgical-education-for-healthcare-professionals" target="_blank">[22]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Partners</div>
+                    <div class="value">Johnson &amp; Johnson, Stryker, Zimmer Biomet, Smith + Nephew (medical device giants).<sup class="ref"><a href="https://www.ossovr.com/post/press-osso-vr-raises-66-million-to-broaden-access-to-surgical-education-for-healthcare-professionals" target="_blank">[22]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">New nursing deal</div>
+                    <div class="value">Oct 2025 partnership with <b>America's Essential Hospitals</b> &mdash; ~400 US nonprofit / public hospitals.<sup class="ref"><a href="https://www.ossovr.com/press-releases/osso-vr-americas-essential-hospitals-partner" target="_blank">[24]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Recognition</div>
+                    <div class="value">TIME Best Inventions, Fast Company Most Innovative, SXSW Innovation Awards.<sup class="ref"><a href="https://www.ossovr.com/press-releases/osso-vr-introduces-new-nursing-procedural-skills-training-platform-opens-early-access-for-healthcare-systems" target="_blank">[21]</a></sup></div>
+                </div>
+            </div>
+
+            <div class="summary-box threat-high">
+                <b>Threat level: HIGH (and rising).</b> Osso has surgeon credibility, 5x more funding than any nursing-only competitor, and is now selling to nursing teams via the largest US safety-net hospital network. ARVR should expect Osso as a major rival in 2026-2027.
+            </div>
+
+            <p class="src-line">Sources: [21] Osso VR Press (Oct 2025 Nurse Training launch + 100K professionals + awards), [22] Osso VR Press ($66M Series C + device partners + specialties), [24] Osso VR Press (Oct 2025 America's Essential Hospitals partnership), [52] CB Insights ($109.62M total raised).</p>
+        </section>
+
+        <!-- ========== SLIDE 10: FUNDAMENTALVR ========== -->
+        <section class="slide">
+            <div class="slide-eyebrow">Slide 10 / Layer 2 &mdash; Adjacent Competitor</div>
+            <div class="comp-header">
+                <div>
+                    <div class="comp-name">FundamentalVR (FundamentalXR)</div>
+                    <div class="comp-tags">
+                        <span class="comp-tag adjacent">Adjacent</span>
+                        <span class="comp-tag">Surgical VR + haptics</span>
+                        <span class="comp-tag">London + Boston</span>
+                    </div>
+                </div>
+                <span class="slide-badge">Slide 10</span>
+            </div>
+
+            <p style="color:#ddd;font-size:0.95rem;margin-bottom:14px;">UK / US surgical VR with haptic (touch feedback) gloves. Already shipped a serious app for the new Apple Vision Pro headset.<sup class="ref"><a href="https://www.immersivelearning.news/2025/02/19/fundamentalvr-unveils-version-two-of-apple-vision-pro-app-for-hands-on-medical-training-with-spatial-computing/" target="_blank">[25]</a></sup></p>
+
+            <div class="comp-fact-grid">
+                <div class="fact">
+                    <div class="label">Focus</div>
+                    <div class="value">Multi-user surgical simulations with haptics &mdash; ophthalmology, robotics, gene therapy, cath lab.<sup class="ref"><a href="https://orthofeed.com/2022/08/11/fundamentalvr-secures-20-million-series-b-growth-investment/" target="_blank">[26]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Funding</div>
+                    <div class="value">Total raised: <b>$37M+</b>. Series B: $20M (Aug 2022, EQT Life Sciences).<sup class="ref"><a href="https://www.cbinsights.com/company/fundamentalvr" target="_blank">[27]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Reach</div>
+                    <div class="value">Deployed in <b>30+ countries</b>. Investor + flagship client: <b>Mayo Clinic</b>.<sup class="ref"><a href="https://orthofeed.com/2022/08/11/fundamentalvr-secures-20-million-series-b-growth-investment/" target="_blank">[26]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Buyers</div>
+                    <div class="value">Pharma + medical device companies (Novartis, CMR Surgical) &mdash; sells to industry, not to schools.<sup class="ref"><a href="https://www.cbinsights.com/company/fundamentalvr" target="_blank">[27]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Tech edge</div>
+                    <div class="value">Haptic feedback + Apple Vision Pro. Working in the higher price / higher fidelity end.<sup class="ref"><a href="https://www.immersivelearning.news/2025/02/19/fundamentalvr-unveils-version-two-of-apple-vision-pro-app-for-hands-on-medical-training-with-spatial-computing/" target="_blank">[25]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Differentiation</div>
+                    <div class="value">"Only platform accredited by leading global education institutions" &mdash; strong CME (Continuing Medical Education) story.<sup class="ref"><a href="https://eqtgroup.com/en/news/eqt-life-sciences-leads-usd-20-million-financing-round-in-fundamentalvr" target="_blank">[28]</a></sup></div>
+                </div>
+            </div>
+
+            <div class="summary-box threat-low">
+                <b>Threat level: LOW-MEDIUM.</b> Different buyer (medical device / pharma sales reps and surgeons, not nurses). Useful as a benchmark for how to bundle haptics + analytics, and for credibility partners like Mayo Clinic.
+            </div>
+
+            <p class="src-line">Sources: [25] Immersive Learning News, [26] OrthoFeed, [27] CB Insights, [28] EQT Group.</p>
+        </section>
+
+        <!-- ========== SLIDE 11: PRECISIONOS ========== -->
+        <section class="slide">
+            <div class="slide-eyebrow">Slide 11 / Layer 2 &mdash; Adjacent Competitor</div>
+            <div class="comp-header">
+                <div>
+                    <div class="comp-name">PrecisionOS</div>
+                    <div class="comp-tags">
+                        <span class="comp-tag adjacent">Adjacent</span>
+                        <span class="comp-tag">Orthopedic surgical VR</span>
+                        <span class="comp-tag">Vancouver, Canada</span>
+                    </div>
+                </div>
+                <span class="slide-badge">Slide 11</span>
+            </div>
+
+            <p style="color:#ddd;font-size:0.95rem;margin-bottom:14px;">VR surgical training built by surgeons. Sold mainly to orthopedic residency programs and medical device companies.<sup class="ref"><a href="https://www.precisionostech.com/orthopedic-residency-program-and-precisionos-team-up-for-exclusive-3-year-collaboration-virtual-reality-development-and-curriculum-integration/" target="_blank">[29]</a></sup></p>
+
+            <div class="comp-fact-grid">
+                <div class="fact">
+                    <div class="label">Focus</div>
+                    <div class="value">Immersive VR for orthopedic surgery, board exam prep, and now general surgery + anatomy (BodyWorks Studio).<sup class="ref"><a href="https://www.precisionostech.com/precisionos-partners-with-the-maine-orthopaedic-review-to-elevate-board-exam-preparation/" target="_blank">[30]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">US footprint</div>
+                    <div class="value">Affiliated with <b>50+ major medical institutions in US and Canada</b>; used in 55+ countries.<sup class="ref"><a href="https://www.precisionostech.com/orthopedic-residency-program-and-precisionos-team-up-for-exclusive-3-year-collaboration-virtual-reality-development-and-curriculum-integration/" target="_blank">[29]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Flagship deal</div>
+                    <div class="value"><b>3-year exclusive collaboration with Massachusetts General Hospital (MGH)</b> orthopedic residency program (since Oct 2022).<sup class="ref"><a href="https://www.prnewswire.com/news-releases/orthopedic-residency-program-and-precisionos-team-up-for-exclusive-3-year-collaboration-virtual-reality-development-and-curriculum-integration-301652907.html" target="_blank">[31]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Industry partners</div>
+                    <div class="value">Siemens Healthineers (C-arm training). Works with "many of the top 10 medical device companies".<sup class="ref"><a href="https://www.precisionostech.com/precisionos-partners-with-siemens-healthineers-for-vr-based-surgical-training-development/" target="_blank">[32]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Hardware</div>
+                    <div class="value">Meta Quest 3 standalone &mdash; cheap, easy to deploy. WVU residents trained "10 min per week" remotely.<sup class="ref"><a href="https://www.precisionostech.com/how-virtual-reality-is-transforming-faculty-teaching-effectiveness-at-the-wvu-orthopedic-residency-program/" target="_blank">[33]</a></sup></div>
+                </div>
+                <div class="fact">
+                    <div class="label">Validation</div>
+                    <div class="value">Multiple peer-reviewed clinical trials confirming better, more confident surgeons.<sup class="ref"><a href="https://www.precisionostech.com/orthopedic-residency-program-and-precisionos-team-up-for-exclusive-3-year-collaboration-virtual-reality-development-and-curriculum-integration/" target="_blank">[29]</a></sup></div>
+                </div>
+            </div>
+
+            <div class="summary-box threat-low">
+                <b>Threat level: LOW.</b> Different vertical (surgeons in residency). Useful learning &mdash; deep partnerships with one elite institution (MGH) + medical device co-marketing is a proven US wedge.
+            </div>
+
+            <p class="src-line">Sources: [29] PrecisionOS, [30] PrecisionOS, [31] PRNewswire, [32] PrecisionOS, [33] PrecisionOS Case Study.</p>
+        </section>
+
+        <!-- ========== SLIDE 12: AR IN THE OR (Medivis + ImmersiveTouch) ========== -->
+        <section class="slide">
+            <div class="slide-eyebrow">Slide 12 / Layer 3 &mdash; Related (AR in the OR)</div>
+            <h2 class="slide-title">AR in the Operating Room &mdash; Different Product, Same Buyer Budget</h2>
+            <p class="slide-subtitle">These companies don't train clinicians &mdash; they help surgeons see better during real operations. Listed so we understand the broader XR (Extended Reality) landscape competing for hospital innovation dollars.</p>
+
+            <div class="grid-2" style="margin-bottom:18px;">
+                <div class="card">
+                    <h3>Medivis &mdash; Brooklyn, NY</h3>
+                    <p>AR surgical navigation for the operating room (OR). World's first <b>FDA-cleared AR system for cranial neurosurgery</b> (Dec 2025) &mdash; eligible for CMS reimbursement codes CPT 61781 / 61783.<sup class="ref"><a href="https://www.medivis.com/press-release/medivis-first-to-receive-fda-clearance-for-augmented-reality-navigation-in-neurosurgery" target="_blank">[34]</a></sup></p>
+                    <p style="margin-top:8px;">Earlier <b>SurgicalAR</b> platform was FDA 510(k) cleared in 2019. Runs on Microsoft HoloLens AR glasses.<sup class="ref"><a href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfPMN/pmn.cfm?ID=K190764" target="_blank">[35]</a></sup></p>
+                </div>
+                <div class="card">
+                    <h3>ImmersiveTouch &mdash; Chicago, IL</h3>
+                    <p>VR + AR for patient-specific surgical planning, models, and custom 3D-printed guides. <b>Used in 3,000+ cases at 100+ healthcare facilities</b>.<sup class="ref"><a href="https://www.prnewswire.com/news-releases/healthpointcapital-acquires-immersivetouch-inc-a-leading-extended-reality-surgical-platform-302494485.html" target="_blank">[36]</a></sup></p>
+                    <p style="margin-top:8px;"><b>Acquired by HealthpointCapital (PE)</b> in June 2025 &mdash; deploying from a $200M musculoskeletal-focused fund.<sup class="ref"><a href="https://www.sdbj.com/finance/healthpointcapital-acquires-majority-stake-in-xr-surgery-software-co/" target="_blank">[37]</a></sup></p>
+                </div>
+            </div>
+
+            <div class="summary-box threat-low">
+                <b>Threat level: LOW (today).</b> These tools sell to surgeons and OR managers &mdash; not nursing schools. But they compete for the same hospital "innovation / XR" line item. They also create awareness and trust for medical XR with the FDA &mdash; this is good news for ARVR.
+            </div>
+
+            <p class="src-line">Sources: [34] Medivis Press, [35] FDA 510(k), [36] PRNewswire, [37] San Diego Business Journal.</p>
+        </section>
+
+        <!-- ========== SLIDE 13: COMPARISON TABLE ========== -->
+        <section class="slide">
+            <div class="slide-eyebrow">Slide 13 / Comparison</div>
+            <h2 class="slide-title">Side-by-Side Snapshot</h2>
+            <p class="slide-subtitle">All 8 competitors on one page &mdash; sized by funding, sorted by threat to ARVR.</p>
+
+            <div class="compare-wrap">
+            <table class="compare">
+                <thead>
+                    <tr>
+                        <th>Company</th>
+                        <th>Layer</th>
+                        <th>Main buyer</th>
+                        <th>Total funding</th>
+                        <th>US reach</th>
+                        <th>Threat to ARVR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>UbiSim</b> (Labster)</td>
+                        <td><span class="dot direct"></span> Direct</td>
+                        <td>Nursing schools, hospitals</td>
+                        <td>$147M (parent)</td>
+                        <td>3,000 institutions worldwide</td>
+                        <td>HIGH</td>
+                    </tr>
+                    <tr>
+                        <td><b>Oxford Medical Simulation</b></td>
+                        <td><span class="dot direct"></span> Direct</td>
+                        <td>Nursing schools + universities</td>
+                        <td>~$19M</td>
+                        <td>150+ institutions, US office</td>
+                        <td>HIGH</td>
+                    </tr>
+                    <tr>
+                        <td><b>Osso VR</b></td>
+                        <td><span class="dot adjacent"></span> Adjacent &rarr; Direct</td>
+                        <td>Hospitals + med-device cos.</td>
+                        <td>$109M</td>
+                        <td>100K+ professionals, 400 hospitals (new deal)</td>
+                        <td>HIGH (rising)</td>
+                    </tr>
+                    <tr>
+                        <td><b>Health Scholars</b> (Relias)</td>
+                        <td><span class="dot direct"></span> Direct</td>
+                        <td>Hospitals (via Relias LMS)</td>
+                        <td>$17M</td>
+                        <td>Relias = 12,000 US healthcare orgs</td>
+                        <td>MEDIUM-HIGH</td>
+                    </tr>
+                    <tr>
+                        <td><b>SimX</b></td>
+                        <td><span class="dot direct"></span> Direct</td>
+                        <td>US military + academic hospitals</td>
+                        <td>$20M+ (mostly DoD R&amp;D)</td>
+                        <td>50+ DoD units, Mayo, Stanford</td>
+                        <td>MEDIUM</td>
+                    </tr>
+                    <tr>
+                        <td><b>FundamentalVR</b></td>
+                        <td><span class="dot adjacent"></span> Adjacent</td>
+                        <td>Pharma + med-device</td>
+                        <td>$37M+</td>
+                        <td>Mayo Clinic, 30+ countries</td>
+                        <td>LOW-MEDIUM</td>
+                    </tr>
+                    <tr>
+                        <td><b>PrecisionOS</b></td>
+                        <td><span class="dot adjacent"></span> Adjacent</td>
+                        <td>Surgery residencies + Siemens</td>
+                        <td>Undisclosed</td>
+                        <td>50+ US / Canada institutions, MGH exclusive</td>
+                        <td>LOW</td>
+                    </tr>
+                    <tr>
+                        <td><b>Medivis / ImmersiveTouch</b></td>
+                        <td><span class="dot related"></span> Related (AR-OR)</td>
+                        <td>Surgeons in the OR</td>
+                        <td>PE-backed</td>
+                        <td>FDA-cleared, 100+ US sites</td>
+                        <td>LOW</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+
+            <p class="src-line">All figures from competitor primary sources and CB Insights; see References slide for direct links.</p>
+        </section>
+
+        <!-- ========== SLIDE 14: KEY TAKEAWAYS ========== -->
+        <section class="slide">
+            <div class="slide-eyebrow">Slide 14 / Takeaways</div>
+            <h2 class="slide-title">5 Takeaways for ARVR Israel</h2>
+            <p class="slide-subtitle">What this competitive landscape means for our US market entry strategy.</p>
+
+            <div class="takeaway">
+                <div class="num">1</div>
+                <div class="body"><b>The nursing-only lane has only 2 real US-active players</b> &mdash; UbiSim and OMS (Oxford Medical Simulation). The market is much bigger than what they cover today. <b>There is room for a 3rd player &mdash; but only with clear differentiation.</b></div>
+            </div>
+
+            <div class="takeaway">
+                <div class="num">2</div>
+                <div class="body"><b>Distribution wins, not technology.</b> Health Scholars (via Relias) and Osso VR (via America's Essential Hospitals) bought reach with one deal. ARVR should hunt for a <b>US distribution partner</b> &mdash; a hospital network, GPO (Group Purchasing Organization), or LMS &mdash; before hiring sales reps.</div>
+            </div>
+
+            <div class="takeaway">
+                <div class="num">3</div>
+                <div class="body"><b>Government money is real money.</b> SimX took $20M+ from the US Air Force. The SBIR / STTR program is open to small Israeli-founded US companies. We should evaluate this path early.</div>
+            </div>
+
+            <div class="takeaway">
+                <div class="num">4</div>
+                <div class="body"><b>"Made by nurses for nurses" is already taken</b> by UbiSim. ARVR's stronger angle: <b>"Tested in real Israeli hospital chaos &mdash; MDA, rehab, geriatrics"</b>, which competitors do not cover. We should pick 1-2 underserved verticals (e.g., rehabilitation, geriatrics, mass-casualty / EMS) and lead with them.</div>
+            </div>
+
+            <div class="takeaway">
+                <div class="num">5</div>
+                <div class="body"><b>Apple Vision Pro is the next platform race.</b> FundamentalVR is already on it. Being early on Vision Pro could be a cheap way to get on the radar of Mayo Clinic, Stanford and the trade press &mdash; especially with US-style cinematic content.</div>
+            </div>
+        </section>
+
+        <!-- ========== SLIDE 15: UAE MARKET OVERVIEW ========== -->
+        <section class="slide">
+            <div class="slide-eyebrow">Slide 15 / Bonus Market &mdash; UAE</div>
+            <h2 class="slide-title">UAE &mdash; Maybe Our Smarter First Move Abroad</h2>
+            <p class="slide-subtitle">The US is the biggest prize, no question. But for a 3-person team in Tel Aviv with limited cash and time, the UAE (United Arab Emirates) may actually be the <b>smarter first international market</b> &mdash; smaller in absolute size, but much easier to reach, less crowded, and politically wide open today thanks to the Abraham Accords.</p>
+
+            <div class="grid-3" style="margin-bottom:18px;">
+                <div class="card">
+                    <div class="stat">$2.5B</div>
+                    <div class="stat-label">Middle East AR / VR healthcare market size in 2025 &mdash; the UAE is the <b>leading country in the region</b><sup class="ref"><a href="https://www.emergenresearch.com/industry-report/middle-east-augmented-reality-and-virtual-reality-in-healthcare-market" target="_blank">[39]</a></sup></div>
+                </div>
+                <div class="card">
+                    <div class="stat">$10.2B</div>
+                    <div class="stat-label">Forecast for 2035 &mdash; 15.5% CAGR (yearly growth rate) for the regional AR / VR healthcare market<sup class="ref"><a href="https://www.emergenresearch.com/industry-report/middle-east-augmented-reality-and-virtual-reality-in-healthcare-market" target="_blank">[39]</a></sup></div>
+                </div>
+                <div class="card">
+                    <div class="stat">20%</div>
+                    <div class="stat-label">CAGR of <b>VR for medical training</b> &mdash; the fastest growing sub-segment in the region. This is exactly ARVR's lane<sup class="ref"><a href="https://www.emergenresearch.com/industry-report/middle-east-augmented-reality-and-virtual-reality-in-healthcare-market" target="_blank">[39]</a></sup></div>
+                </div>
+            </div>
+
+            <div class="grid-2" style="margin-bottom:14px;">
+                <div class="card">
+                    <h3>Who buys VR training in the UAE?</h3>
+                    <ul style="margin-top:6px;">
+                        <li><b>Dubai Health + MBRU</b> (Mohammed Bin Rashid University) &mdash; already piloting VR for pain reduction at the Thalassemia Center.<sup class="ref"><a href="https://www.mbru.ac.ae/news/dubai-health-explores-virtual-reality-to-reduce-pain-and-anxiety-in-medical-procedures/" target="_blank">[40]</a></sup></li>
+                        <li><b>MoHAP</b> (Ministry of Health and Prevention) &mdash; launched a 3D / VR project to make nursing more attractive to students.<sup class="ref"><a href="https://mohap.gov.ae/en/w/ministry-of-health-and-prevention-unveils-details-of-3d-vr-project-to-enhance-attractiveness-of-the-nursing-profession" target="_blank">[41]</a></sup></li>
+                        <li><b>SEHA / PureHealth</b> &mdash; UAE's largest network, 14 hospitals + 70+ clinics + 3,000+ beds. Centralized buyer.<sup class="ref"><a href="https://www.morningstar.com/news/pr-newswire/20250318cn43630/lunit-secures-multi-year-contract-with-uaes-largest-healthcare-network-to-power-national-ai-breast-cancer-screening-program" target="_blank">[42]</a></sup></li>
+                        <li><b>Cleveland Clinic Abu Dhabi</b> &mdash; runs the UAE's largest simulation center (24,000 sq ft) &mdash; already uses VR equipment.<sup class="ref"><a href="https://www.clevelandclinicabudhabi.ae/en/medical-professionals/multidisciplinary-simulation-center" target="_blank">[43]</a></sup></li>
+                        <li><b>Khalifa University KU-CELS</b> &mdash; first UAE simulation center with US dual accreditation (Society for Simulation in Healthcare). Has a CAVE (Cave Automated Virtual Environment) immersive room.<sup class="ref"><a href="https://www.ku.ac.ae/khalifa-universitys-center-for-experiential-learning-and-clinical-simulation-first-in-uae-to-receive-unique-dual-accreditation-from-us" target="_blank">[44]</a></sup></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>The Israeli angle &mdash; why now?</h3>
+                    <p>Since the <b>2020 Abraham Accords</b>, Israeli health institutions sell openly into the UAE.<sup class="ref"><a href="https://www.aapeaceinstitute.org/latest/major-israeli-emirates-agreement-signed-to-start-jointly-building-health-tech" target="_blank">[45]</a></sup></p>
+                    <ul style="margin-top:8px;">
+                        <li><b>Sheba Medical Center &times; G42 Healthcare</b> (Abu Dhabi) &mdash; strategic MOU (Memorandum Of Understanding) on AI / clinical research / training.<sup class="ref"><a href="https://sheba-global.com/new-collaboration-between-sheba-and-g42-healthcare-an-abu-dhabi-based-healthtech-company/" target="_blank">[46]</a></sup></li>
+                        <li><b>Sheba &times; Abu Dhabi Department of Health</b> &mdash; signed MOU for healthcare service development.<sup class="ref"><a href="https://www.aapeaceinstitute.org/latest/major-israeli-emirates-agreement-signed-to-start-jointly-building-health-tech" target="_blank">[45]</a></sup></li>
+                    </ul>
+                    <p style="margin-top:10px;">An Israeli VR training startup can ride on this open door &mdash; but should be ready for political volatility.</p>
+                </div>
+            </div>
+
+            <div class="summary-box threat-low">
+                <b>Our recommendation:</b> For ARVR Israel as a small founder-led team, the UAE is realistically the <b>smarter first stop abroad &mdash; not because it is bigger, but because it is reachable</b>. Only <b>~5-6 buyers</b> control most of the public health budget (vs. thousands of independent buyers in the US). Local competition is just <b>4 small project shops</b> (vs. 8+ well-funded US scale-ups burning $100M+ each). Tel Aviv to Dubai is a <b>3-hour flight</b>; Tel Aviv to New York is 12. And the Abraham Accords door is wide open today &mdash; tomorrow it may not be. <b>Winning Cleveland Clinic Abu Dhabi, SEHA or a Sheba &times; G42-style joint program first gives ARVR a flagship reference customer that then opens the much harder US doors.</b> The US stays the long-term prize. The UAE is the smarter on-ramp.
+            </div>
+
+            <p class="src-line">Sources: [39] Emergen Research, [40] MBRU, [41] MoHAP, [42] Morningstar / Lunit-SEHA, [43] Cleveland Clinic Abu Dhabi, [44] Khalifa University, [45] Abraham Accords Peace Institute, [46] Sheba Global.</p>
+        </section>
+
+        <!-- ========== SLIDE 16: UAE COMPETITORS ========== -->
+        <section class="slide">
+            <div class="slide-eyebrow">Slide 16 / UAE Competitors</div>
+            <h2 class="slide-title">Who Already Sells VR Healthcare in the UAE?</h2>
+            <p class="slide-subtitle">The competitive bench is much shorter than the US &mdash; a mix of small local XR (Extended Reality) shops and a few global players that landed inside top hospitals.</p>
+
+            <div class="grid-2" style="margin-bottom:14px;">
+                <div class="card">
+                    <h3>PROVEN Reality &mdash; SimBios <span class="comp-tag direct" style="margin-left:6px;">Direct</span></h3>
+                    <p>UAE / KSA-based AR / VR studio. "SimBios" is a VR healthcare simulation platform covering ultrasound, auscultation (listening to heart / lungs), CT (Computed Tomography) and patient exams. Deployed via SideQuest on Meta Quest. Markets itself as "the leading AR / VR provider in UAE and Saudi Arabia".<sup class="ref"><a href="https://provenreality.com/simbios/" target="_blank">[47]</a></sup></p>
+                </div>
+                <div class="card">
+                    <h3>SingulXR &mdash; Dubai <span class="comp-tag direct" style="margin-left:6px;">Direct</span></h3>
+                    <p>Dubai-based (JLT) custom VR / AR / AI shop. Offers "healthcare simulation training" and "AI + XR medical simulations". Claims deployments in <b>12 countries</b>. Project-based model rather than off-the-shelf product.<sup class="ref"><a href="https://singulxr.com/" target="_blank">[48]</a></sup></p>
+                </div>
+                <div class="card">
+                    <h3>Wallfort.tech <span class="comp-tag direct" style="margin-left:6px;">Direct</span></h3>
+                    <p>AR / VR hospital staff training with simulations tailored to UAE realities &mdash; heatstroke, mass casualty events, Cleveland Clinic / Thumbay environments, multicultural patient communication. Strong local positioning, smaller player.<sup class="ref"><a href="https://wallfort.tech/hospital-staff-training/" target="_blank">[49]</a></sup></p>
+                </div>
+                <div class="card">
+                    <h3>XRDigitech &mdash; Dubai <span class="comp-tag adjacent" style="margin-left:6px;">Adjacent</span></h3>
+                    <p>Dubai IT / XR services company with a "Metaverse Medical Simulator" &mdash; patient simulations, 3D anatomy and emergency response training. Sells to educators and corporates, not just hospitals.<sup class="ref"><a href="https://xrdigitech.com/products-services-dubai/" target="_blank">[50]</a></sup></p>
+                </div>
+            </div>
+
+            <div class="grid-2" style="margin-bottom:14px;">
+                <div class="card">
+                    <h3>Global players already inside UAE hospitals <span class="comp-tag related" style="margin-left:6px;">Foreign</span></h3>
+                    <ul>
+                        <li><b>Body Interact</b> (Portugal) &mdash; virtual patient simulator used inside Khalifa University KU-CELS.<sup class="ref"><a href="https://ku.ac.ae/cels/facilities" target="_blank">[51]</a></sup></li>
+                        <li><b>CAE Healthcare</b> (US / Canada) &mdash; learning management system + manikin simulators used at KU-CELS.<sup class="ref"><a href="https://ku.ac.ae/cels/facilities" target="_blank">[51]</a></sup></li>
+                        <li><b>Oxford Medical Simulation (OMS)</b>, <b>UbiSim</b> and <b>Osso VR</b> all sell globally and could enter UAE through their existing distributor networks. None have a UAE-dedicated offering yet.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>What is missing in the UAE today?</h3>
+                    <ul>
+                        <li>A clear nursing-focused VR brand &mdash; UbiSim's lane is open here.</li>
+                        <li>Arabic-language scenarios with culturally adapted patient avatars.</li>
+                        <li>Bundled offering for the public sector (SEHA + MoHAP) &mdash; ARVR's hospital-tested Israeli scenarios (MDA, geriatrics, rehab) would fit straight in.</li>
+                        <li>Strong academic publications in the region &mdash; MBRU and Khalifa want research partners, not just vendors.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="summary-box threat-low">
+                <b>Threat level in UAE: LOW to MEDIUM.</b> No dominant local player. The 4 UAE startups are mostly small project shops, not scaled products. The bigger risk is a US / UK player (UbiSim, OMS, Osso VR) landing a flagship deal with SEHA or Cleveland Clinic Abu Dhabi before ARVR does. <b>The "first credible Israel-UAE healthcare VR partnership" is still up for grabs &mdash; that is the wedge.</b>
+            </div>
+
+            <p class="src-line">Sources: [47] PROVEN Reality, [48] SingulXR, [49] Wallfort.tech, [50] XRDigitech, [51] Khalifa University KU-CELS.</p>
+        </section>
+
+        <!-- ========== SLIDE 17: REFERENCES ========== -->
+        <section class="slide">
+            <div class="slide-eyebrow">Slide 17 / Sources</div>
+            <h2 class="slide-title">References</h2>
+            <p class="slide-subtitle">Every fact in this deck links back to a primary source. Numbers match the [n] superscripts on each slide.</p>
+
+            <div class="ref-list">
+                <div class="ref-item"><span class="n">[1]</span><span>Grand View Research &mdash; US AR/VR Healthcare Market 2025-2030. <a href="https://www.grandviewresearch.com/industry-analysis/us-augmented-reality-virtual-reality-healthcare-market-report" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[2]</span><span>Prolink / HRSA &mdash; 2026 US Nursing Demand Gap. <a href="https://prolinkworks.com/perspectives/806-of-us-nursing-demand-goes-unmet-in-2026-what-health-systems-can-do-now" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[3]</span><span>Gaumard Blog / AACN &mdash; Nursing School Applicants Turned Away. <a href="https://blog.gaumard.com/using-simulation-as-a-strategy-to-reduce-the-nursing-shortage-in-wyoming/" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[4]</span><span>Mordor Intelligence &mdash; US Virtual Reality Market 2025-2030. <a href="https://www.mordorintelligence.com/industry-reports/united-states-virtual-reality-market" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[5]</span><span>PRNewswire &mdash; Labster Acquires UbiSim (Oct 2021). <a href="https://www.prnewswire.com/news-releases/labster-to-acquire-worlds-first-vr-training-platform-for-nursing-301400284.html" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[6]</span><span>UbiSim &mdash; 2025 Product Updates. <a href="https://www.ubisimvr.com/in-the-news/updates-2025" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[7]</span><span>BusinessWire &mdash; Labster $47M Funding (2022). <a href="https://www.businesswire.com/news/home/20220404005111/en/Labster-Secures-%2447M-in-New-Funding-Tranche-to-Expand-Global-Opportunities-for-Virtual-Science-Laboratory-Simulations" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[8]</span><span>PRWeb / Labster &mdash; Leadership announcement (Jan 22, 2025) &mdash; contains "Over six million learners in 3,000 institutions across 100 countries", TIME Best Invention 2024 and HCT / Meta partnership. <a href="https://www.prweb.com/releases/labster-strengthens-leadership-team-with-distinguished-healthcare-and-education-experts-302357001.html" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[9]</span><span>PRNewswire &mdash; UbiSim AI Narrative Analysis (Dec 2025). <a href="https://www.prnewswire.com/news-releases/ubisim-brings-ai-driven-insights-to-nursing-education-302626860.html" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[10]</span><span>The Next Web &mdash; OMS &pound;5M Growth Round. <a href="https://thenextweb.com/news/oxford-medical-simulation-secures-5m-growth-financing" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[11]</span><span>Oxford Medical Simulation &mdash; Homepage. <a href="https://oxfordmedicalsimulation.com/" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[12]</span><span>OMS &mdash; Series A Press Release ($12.6M). <a href="https://oxfordmedicalsimulation.com/oxford-medical-simulation-raises-series-a-funding/" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[13]</span><span>VKTR &mdash; OMS Series A coverage. <a href="https://www.vktr.com/the-wire/oxford-medical-simulation-raises-126-million-in-series-a-funding-to-address-critical-healthcare-training-gap-with-virtual-reality/" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[14]</span><span>PRNewswire &mdash; Relias x Health Scholars (OB). <a href="https://www.prnewswire.com/news-releases/relias-partners-with-health-scholars-leading-healthcare-virtual-reality-company-to-improve-ob-provider-care-301566554.html" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[15]</span><span>CB Insights &mdash; Health Scholars Profile. <a href="https://www.cbinsights.com/company/health-scholars" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[16]</span><span>PRWeb &mdash; Health Scholars $17M Series B. <a href="https://www.prweb.com/releases/health-scholars-the-virtual-reality-healthcare-training-platform-raises-17m-in-series-b-funding-891585215.html" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[17]</span><span>BusinessWire &mdash; Relias Acquires InceptionXR (Mar 2025). <a href="https://www.businesswire.com/news/home/20250310741852/en/Innovative-Immersive-Learning-Relias-Expands-VR-Access-to-Solve-Healthcare-Workforce-Training-Challenges" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[18]</span><span>SimX &mdash; VALOR Military Program. <a href="https://www.simxvr.com/virtual-reality-medical-simulation-training-for-military/" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[19]</span><span>PRNewswire &mdash; SimX $1.25M AFWERX STTR (Dec 2024). <a href="https://www.prnewswire.com/news-releases/simx-receives-1-25m-phase-ii-sttr-grant-from-afwerx-to-advance-vr-training-for-perioperative-expeditionary-medical-support-302322663.html" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[20]</span><span>PRNewswire &mdash; US Air Force SimX Contract (Nov 2022). <a href="https://www.prnewswire.com/news-releases/us-air-force-awards-simx-contract-to-enhance-vr-medical-simulation-training-301672018.html" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[21]</span><span>Osso VR &mdash; Osso Nurse Training Launch (Oct 2025). <a href="https://www.ossovr.com/press-releases/osso-vr-introduces-new-nursing-procedural-skills-training-platform-opens-early-access-for-healthcare-systems" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[22]</span><span>Osso VR &mdash; $66M Series C (Mar 2022). <a href="https://www.ossovr.com/post/press-osso-vr-raises-66-million-to-broaden-access-to-surgical-education-for-healthcare-professionals" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[23]</span><span>PRNewswire &mdash; NYC Health + Hospitals debuts Obstetrics VR (Jun 16, 2022) using Health Scholars. <a href="https://www.prnewswire.com/news-releases/nyc-health--hospitals-debuts-obstetrics-virtual-reality-technology-as-part-of-its-ongoing-comprehensive-maternal-health-simulation-trainings-301569874.html" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[24]</span><span>Osso VR &mdash; America's Essential Hospitals Partnership (Oct 2025). <a href="https://www.ossovr.com/press-releases/osso-vr-americas-essential-hospitals-partner" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[25]</span><span>Immersive Learning News &mdash; FundamentalVR on Apple Vision Pro. <a href="https://www.immersivelearning.news/2025/02/19/fundamentalvr-unveils-version-two-of-apple-vision-pro-app-for-hands-on-medical-training-with-spatial-computing/" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[26]</span><span>OrthoFeed &mdash; FundamentalVR $20M Series B. <a href="https://orthofeed.com/2022/08/11/fundamentalvr-secures-20-million-series-b-growth-investment/" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[27]</span><span>CB Insights &mdash; FundamentalVR Profile. <a href="https://www.cbinsights.com/company/fundamentalvr" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[28]</span><span>EQT Group &mdash; Series B Investment Press. <a href="https://eqtgroup.com/en/news/eqt-life-sciences-leads-usd-20-million-financing-round-in-fundamentalvr" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[29]</span><span>PrecisionOS &mdash; MGH Collaboration. <a href="https://www.precisionostech.com/orthopedic-residency-program-and-precisionos-team-up-for-exclusive-3-year-collaboration-virtual-reality-development-and-curriculum-integration/" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[30]</span><span>PrecisionOS x Maine OrthoPaedic Review. <a href="https://www.precisionostech.com/precisionos-partners-with-the-maine-orthopaedic-review-to-elevate-board-exam-preparation/" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[31]</span><span>PRNewswire &mdash; PrecisionOS x MGH (Oct 2022). <a href="https://www.prnewswire.com/news-releases/orthopedic-residency-program-and-precisionos-team-up-for-exclusive-3-year-collaboration-virtual-reality-development-and-curriculum-integration-301652907.html" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[32]</span><span>PrecisionOS &mdash; Siemens Healthineers Partnership. <a href="https://www.precisionostech.com/precisionos-partners-with-siemens-healthineers-for-vr-based-surgical-training-development/" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[33]</span><span>PrecisionOS &mdash; WVU Residency Case Study. <a href="https://www.precisionostech.com/how-virtual-reality-is-transforming-faculty-teaching-effectiveness-at-the-wvu-orthopedic-residency-program/" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[34]</span><span>Medivis &mdash; First FDA AR Cranial Clearance (Dec 2025). <a href="https://www.medivis.com/press-release/medivis-first-to-receive-fda-clearance-for-augmented-reality-navigation-in-neurosurgery" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[35]</span><span>FDA 510(k) &mdash; Medivis SurgicalAR (K190764). <a href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfPMN/pmn.cfm?ID=K190764" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[36]</span><span>PRNewswire &mdash; HealthpointCapital Acquires ImmersiveTouch (Jun 2025). <a href="https://www.prnewswire.com/news-releases/healthpointcapital-acquires-immersivetouch-inc-a-leading-extended-reality-surgical-platform-302494485.html" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[37]</span><span>San Diego Business Journal &mdash; HealthpointCapital Acquisition. <a href="https://www.sdbj.com/finance/healthpointcapital-acquires-majority-stake-in-xr-surgery-software-co/" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[38]</span><span>SimX Blog &mdash; $1.25M AFWERX STTR for VR women's-health training with the Department of the Air Force. <a href="https://www.simxvr.com/blog/simx-selected-by-afwerx-to-develop-vr-medical-training-for-womens-health-in-collaboration-with-daf/" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[39]</span><span>Emergen Research &mdash; Middle East AR/VR Healthcare Market 2025-2035. <a href="https://www.emergenresearch.com/industry-report/middle-east-augmented-reality-and-virtual-reality-in-healthcare-market" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[40]</span><span>MBRU &mdash; Dubai Health VR for Thalassemia Patients. <a href="https://www.mbru.ac.ae/news/dubai-health-explores-virtual-reality-to-reduce-pain-and-anxiety-in-medical-procedures/" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[41]</span><span>UAE MoHAP &mdash; 3D-VR Nursing Project. <a href="https://mohap.gov.ae/en/w/ministry-of-health-and-prevention-unveils-details-of-3d-vr-project-to-enhance-attractiveness-of-the-nursing-profession" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[42]</span><span>Morningstar / PRNewswire &mdash; Lunit x SEHA 5-Year Contract (Mar 2025). <a href="https://www.morningstar.com/news/pr-newswire/20250318cn43630/lunit-secures-multi-year-contract-with-uaes-largest-healthcare-network-to-power-national-ai-breast-cancer-screening-program" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[43]</span><span>Cleveland Clinic Abu Dhabi &mdash; Multidisciplinary Simulation Center. <a href="https://www.clevelandclinicabudhabi.ae/en/medical-professionals/multidisciplinary-simulation-center" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[44]</span><span>Khalifa University &mdash; KU-CELS US Dual Accreditation. <a href="https://www.ku.ac.ae/khalifa-universitys-center-for-experiential-learning-and-clinical-simulation-first-in-uae-to-receive-unique-dual-accreditation-from-us" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[45]</span><span>Abraham Accords Peace Institute &mdash; Sheba x G42 Healthcare MOU. <a href="https://www.aapeaceinstitute.org/latest/major-israeli-emirates-agreement-signed-to-start-jointly-building-health-tech" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[46]</span><span>Sheba Global &mdash; G42 Healthcare Collaboration Detail. <a href="https://sheba-global.com/new-collaboration-between-sheba-and-g42-healthcare-an-abu-dhabi-based-healthtech-company/" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[47]</span><span>PROVEN Reality &mdash; SimBios VR Healthcare Platform (UAE / KSA). <a href="https://provenreality.com/simbios/" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[48]</span><span>SingulXR &mdash; Dubai XR Healthcare Studio. <a href="https://singulxr.com/" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[49]</span><span>Wallfort.tech &mdash; UAE Hospital Staff AR / VR Training. <a href="https://wallfort.tech/hospital-staff-training/" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[50]</span><span>XRDigitech &mdash; Dubai Metaverse Medical Simulator. <a href="https://xrdigitech.com/products-services-dubai/" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[51]</span><span>Khalifa University KU-CELS &mdash; Facilities (Body Interact, CAE Healthcare, CAVE). <a href="https://ku.ac.ae/cels/facilities" target="_blank">link</a></span></div>
+                <div class="ref-item"><span class="n">[52]</span><span>CB Insights &mdash; Osso VR Company Profile (Total Raised $109.62M, Last Raised $66M Series C, customers J&amp;J / Stryker / Smith + Nephew / Zimmer Biomet). <a href="https://www.cbinsights.com/company/osso-vr" target="_blank">link</a></span></div>
+            </div>
+
+            <p class="src-line">Compiled by Rom Kurtz, Maayan Bohak, Yoni Jacobs &mdash; TAU MBA, ARVR Israel project, May 2026.</p>
+        </section>
+
+    </div>
+
+    <!-- ========== NAV BAR ========== -->
+    <div class="nav">
+        <button class="nav-btn" id="prevBtn">&larr; Prev</button>
+        <div class="nav-counter" id="counter">1 / 17</div>
+        <button class="nav-btn" id="nextBtn">Next &rarr;</button>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const total = slides.length;
+        let current = 0;
+
+        const counter  = document.getElementById('counter');
+        const prevBtn  = document.getElementById('prevBtn');
+        const nextBtn  = document.getElementById('nextBtn');
+        const progress = document.getElementById('progress');
+
+        function show(i) {
+            current = Math.max(0, Math.min(total - 1, i));
+            slides.forEach((s, idx) => s.classList.toggle('active', idx === current));
+            counter.textContent = (current + 1) + ' / ' + total;
+            progress.style.width = ((current + 1) / total * 100) + '%';
+            window.scrollTo(0, 0);
+        }
+
+        prevBtn.addEventListener('click', () => show(current - 1));
+        nextBtn.addEventListener('click', () => show(current + 1));
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+                e.preventDefault();
+                show(current + 1);
+            } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                e.preventDefault();
+                show(current - 1);
+            } else if (e.key === 'Home') {
+                show(0);
+            } else if (e.key === 'End') {
+                show(total - 1);
+            }
+        });
+
+        show(0);
+    </script>
+</body>
+</html>

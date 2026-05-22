@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>ARVR Israel — MBA Consulting Project</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+            padding: 60px 20px;
+            color: #fff;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; }
+
+        .header { text-align: center; margin-bottom: 60px; }
+
+        .eyebrow {
+            display: inline-block;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #c4b5fd;
+            background: rgba(196, 181, 253, 0.1);
+            border: 1px solid rgba(196, 181, 253, 0.25);
+            padding: 6px 14px;
+            border-radius: 999px;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            margin-bottom: 12px;
+            background: linear-gradient(90deg, #f093fb, #f5576c, #fda085);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.15;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #bbb;
+            max-width: 700px;
+            margin: 0 auto 24px;
+            line-height: 1.5;
+        }
+
+        .team {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+
+        .team-member {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            color: #c4b5fd;
+        }
+
+        .team-member .avatar {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: #fff;
+        }
+
+        .avatar-rk { background: linear-gradient(135deg, #6366f1, #818cf8); }
+        .avatar-mb { background: linear-gradient(135deg, #ec4899, #f472b6); }
+        .avatar-yj { background: linear-gradient(135deg, #f59e0b, #fbbf24); }
+
+        /* ========== DELIVERABLE CARDS ========== */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 28px;
+            margin-bottom: 50px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 32px;
+            transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+        }
+
+        .card.roadmap::before { background: linear-gradient(90deg, #f093fb, #f5576c); }
+        .card.competitors::before { background: linear-gradient(90deg, #fda085, #f59e0b); }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(196, 181, 253, 0.4);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .card-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #bbb;
+            margin-bottom: 14px;
+        }
+
+        .card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .card p {
+            color: #c8c8c8;
+            line-height: 1.55;
+            margin-bottom: 22px;
+            flex-grow: 1;
+        }
+
+        .card ul {
+            list-style: none;
+            margin-bottom: 22px;
+        }
+
+        .card ul li {
+            color: #bbb;
+            font-size: 0.9rem;
+            padding: 4px 0 4px 20px;
+            position: relative;
+        }
+
+        .card ul li::before {
+            content: "›";
+            position: absolute;
+            left: 4px;
+            color: #f5576c;
+            font-weight: bold;
+        }
+
+        .card-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 22px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: #fff;
+            align-self: flex-start;
+            transition: filter 0.2s ease;
+        }
+
+        .card-cta::after { content: "→"; transition: transform 0.2s ease; }
+        .card:hover .card-cta::after { transform: translateX(4px); }
+
+        /* ========== INFO STRIP ========== */
+        .info-strip {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 14px;
+            padding: 22px 28px;
+            text-align: center;
+            color: #aaa;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .info-strip b { color: #c4b5fd; }
+
+        footer {
+            text-align: center;
+            color: #777;
+            font-size: 0.85rem;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            .card { padding: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <span class="eyebrow">TAU MBA · Startup Consulting · 2026</span>
+            <h1>ARVR Israel — US &amp; UAE Expansion</h1>
+            <p class="subtitle">Strategic consulting deliverables for ARVR Israel's expansion outside the local market. Project roadmap and competitive landscape — all sources verified and linked.</p>
+            <div class="team">
+                <div class="team-member"><div class="avatar avatar-rk">RK</div><span>Rom Kurtz</span></div>
+                <div class="team-member"><div class="avatar avatar-mb">MB</div><span>Maayan Bohak</span></div>
+                <div class="team-member"><div class="avatar avatar-yj">YJ</div><span>Yoni Jacobs</span></div>
+            </div>
+        </header>
+
+        <section class="grid">
+            <a class="card roadmap" href="startup-roadmap.html">
+                <span class="card-badge">Deliverable 01</span>
+                <h2>Project Roadmap</h2>
+                <p>Full Gantt-style plan of the consulting engagement — phases, milestones and dependencies from kickoff through final recommendation.</p>
+                <ul>
+                    <li>Workstream timeline &amp; milestones</li>
+                    <li>Research &amp; interview plan</li>
+                    <li>Decision gates and deliverables</li>
+                </ul>
+                <span class="card-cta">Open roadmap</span>
+            </a>
+
+            <a class="card competitors" href="competitors-deck.html">
+                <span class="card-badge">Deliverable 02</span>
+                <h2>Competitive Landscape Deck</h2>
+                <p>17-slide HTML deck covering the US and UAE healthcare VR / AR competitive landscape, with every number traceable to a primary source.</p>
+                <ul>
+                    <li>US market sizing &amp; 8 direct / adjacent rivals</li>
+                    <li>UAE market &amp; local competitors</li>
+                    <li>Glossary, comparison table &amp; 52 cited sources</li>
+                </ul>
+                <span class="card-cta">Open competitor deck</span>
+            </a>
+        </section>
+
+        <div class="info-strip">
+            <b>How to navigate the deck:</b> use the on-screen Prev / Next buttons or your keyboard arrows (← / →), Space, Page Up / Page Down, or Home / End to jump to first/last slide.
+        </div>
+
+        <footer>
+            Tel Aviv University &mdash; MBA &mdash; Startup Consulting Class &mdash; 2026
+        </footer>
+    </div>
+</body>
+</html>
