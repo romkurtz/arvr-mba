@@ -80,102 +80,75 @@
         .avatar-mb { background: linear-gradient(135deg, #ec4899, #f472b6); }
         .avatar-yj { background: linear-gradient(135deg, #f59e0b, #fbbf24); }
 
-        /* ========== DELIVERABLE CARDS ========== */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 28px;
-            margin-bottom: 50px;
+        /* ========== DELIVERABLE LIST ========== */
+        .deliverables-list {
+            list-style: none;
+            max-width: 700px;
+            margin: 0 auto 50px;
         }
 
-        .card {
+        .deliverable-link {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 18px 24px;
+            margin-bottom: 8px;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 18px;
-            padding: 32px;
-            transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
-            display: flex;
-            flex-direction: column;
+            border-radius: 12px;
             text-decoration: none;
             color: inherit;
-            position: relative;
-            overflow: hidden;
+            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
         }
 
-        .card::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 4px;
-        }
-
-        .card.roadmap::before { background: linear-gradient(90deg, #f093fb, #f5576c); }
-        .card.competitors::before { background: linear-gradient(90deg, #fda085, #f59e0b); }
-
-        .card:hover {
-            transform: translateY(-4px);
+        .deliverable-link:hover {
+            transform: translateX(6px);
             border-color: rgba(196, 181, 253, 0.4);
-            background: rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.07);
         }
 
-        .card-badge {
-            display: inline-block;
-            font-size: 0.75rem;
+        .deliverable-num {
+            font-size: 0.72rem;
+            font-weight: 700;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: #bbb;
-            margin-bottom: 14px;
+            color: #888;
+            min-width: 28px;
         }
 
-        .card h2 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
+        .deliverable-title {
+            font-size: 1.15rem;
+            font-weight: 600;
             color: #fff;
-        }
-
-        .card p {
-            color: #c8c8c8;
-            line-height: 1.55;
-            margin-bottom: 22px;
             flex-grow: 1;
         }
 
-        .card ul {
-            list-style: none;
-            margin-bottom: 22px;
+        .deliverable-desc {
+            font-size: 0.85rem;
+            color: #aaa;
+            display: none;
         }
 
-        .card ul li {
-            color: #bbb;
-            font-size: 0.9rem;
-            padding: 4px 0 4px 20px;
-            position: relative;
+        .deliverable-arrow {
+            color: #c4b5fd;
+            font-size: 1.1rem;
+            transition: transform 0.2s ease;
         }
 
-        .card ul li::before {
-            content: "›";
-            position: absolute;
-            left: 4px;
-            color: #f5576c;
-            font-weight: bold;
+        .deliverable-link:hover .deliverable-arrow {
+            transform: translateX(4px);
         }
 
-        .card-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 22px;
-            border-radius: 999px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            color: #fff;
-            align-self: flex-start;
-            transition: filter 0.2s ease;
+        .deliverable-accent {
+            width: 4px;
+            height: 32px;
+            border-radius: 2px;
+            flex-shrink: 0;
         }
 
-        .card-cta::after { content: "→"; transition: transform 0.2s ease; }
-        .card:hover .card-cta::after { transform: translateX(4px); }
+        .accent-pink { background: linear-gradient(180deg, #f093fb, #f5576c); }
+        .accent-orange { background: linear-gradient(180deg, #fda085, #f59e0b); }
+        .accent-green { background: linear-gradient(180deg, #10b981, #34d399); }
 
         /* ========== INFO STRIP ========== */
         .info-strip {
@@ -200,7 +173,6 @@
 
         @media (max-width: 600px) {
             h1 { font-size: 2.2rem; }
-            .card { padding: 24px; }
         }
     </style>
 </head>
@@ -217,31 +189,32 @@
             </div>
         </header>
 
-        <section class="grid">
-            <a class="card roadmap" href="startup-roadmap.html">
-                <span class="card-badge">Deliverable 01</span>
-                <h2>Project Roadmap</h2>
-                <p>Full Gantt-style plan of the consulting engagement — phases, milestones and dependencies from kickoff through final recommendation.</p>
-                <ul>
-                    <li>Workstream timeline &amp; milestones</li>
-                    <li>Research &amp; interview plan</li>
-                    <li>Decision gates and deliverables</li>
-                </ul>
-                <span class="card-cta">Open roadmap</span>
-            </a>
-
-            <a class="card competitors" href="competitors-deck.html">
-                <span class="card-badge">Deliverable 02</span>
-                <h2>Competitive Landscape Deck</h2>
-                <p>17-slide HTML deck covering the US and UAE healthcare VR / AR competitive landscape, with every number traceable to a primary source.</p>
-                <ul>
-                    <li>US market sizing &amp; 8 direct / adjacent rivals</li>
-                    <li>UAE market &amp; local competitors</li>
-                    <li>Glossary, comparison table &amp; 52 cited sources</li>
-                </ul>
-                <span class="card-cta">Open competitor deck</span>
-            </a>
-        </section>
+        <ul class="deliverables-list">
+            <li>
+                <a class="deliverable-link" href="startup-roadmap.html">
+                    <div class="deliverable-accent accent-pink"></div>
+                    <span class="deliverable-num">01</span>
+                    <span class="deliverable-title">Project Roadmap</span>
+                    <span class="deliverable-arrow">→</span>
+                </a>
+            </li>
+            <li>
+                <a class="deliverable-link" href="competitors-deck.html">
+                    <div class="deliverable-accent accent-orange"></div>
+                    <span class="deliverable-num">02</span>
+                    <span class="deliverable-title">Competitive Landscape Deck</span>
+                    <span class="deliverable-arrow">→</span>
+                </a>
+            </li>
+            <li>
+                <a class="deliverable-link" href="regulation-deck.html">
+                    <div class="deliverable-accent accent-green"></div>
+                    <span class="deliverable-num">03</span>
+                    <span class="deliverable-title">Regulation &mdash; US &amp; UAE</span>
+                    <span class="deliverable-arrow">→</span>
+                </a>
+            </li>
+        </ul>
 
         <div class="info-strip">
             <b>How to navigate the deck:</b> use the on-screen Prev / Next buttons or your keyboard arrows (← / →), Space, Page Up / Page Down, or Home / End to jump to first/last slide.

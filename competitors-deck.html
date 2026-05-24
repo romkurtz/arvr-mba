@@ -29,18 +29,31 @@
             overflow: hidden;
         }
 
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ========== TOP BAR (home + progress) ========== */
+        .top-bar {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            flex-shrink: 0;
+        }
+
         /* ========== DECK FRAME ========== */
         .deck {
             position: relative;
-            width: 100vw;
-            height: 100vh;
+            flex: 1;
+            min-height: 0;
             overflow: hidden;
         }
 
         .slide {
             position: absolute;
             inset: 0;
-            padding: 50px 70px 90px 70px;
+            padding: 24px 70px 24px 70px;
             display: none;
             flex-direction: column;
             overflow-y: auto;
@@ -418,14 +431,13 @@
 
         /* ========== NAV ========== */
         .nav {
-            position: fixed;
-            bottom: 18px;
-            left: 0; right: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 18px;
-            z-index: 100;
+            padding: 10px 20px;
+            flex-shrink: 0;
+            border-top: 1px solid rgba(255,255,255,0.06);
         }
 
         .nav-btn {
@@ -437,7 +449,6 @@
             cursor: pointer;
             font-size: 0.9rem;
             font-weight: 600;
-            backdrop-filter: blur(10px);
             transition: background 0.2s;
         }
 
@@ -450,14 +461,6 @@
             text-align: center;
         }
 
-        .slide-badge {
-            position: absolute;
-            top: 22px; right: 28px;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-        }
-
         .progress {
             position: fixed;
             top: 0; left: 0;
@@ -468,60 +471,66 @@
             transition: width 0.3s ease;
         }
 
-        /* ========== RESPONSIVE ========== */
-        @media (max-width: 900px) {
-            .slide { padding: 30px 24px 90px 24px; }
-            .slide-title { font-size: 1.6rem; }
-            .title-slide h1 { font-size: 2.4rem; }
-            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-            .glossary-grid, .ref-list { grid-template-columns: 1fr; }
-            .comp-fact-grid { grid-template-columns: 1fr; }
-            .comp-name { font-size: 1.4rem; }
-        }
         /* ========== BACK TO HOME BUTTON ========== */
         .home-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 10px 16px;
+            gap: 6px;
+            padding: 6px 12px;
             background: rgba(255, 255, 255, 0.06);
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 999px;
             color: var(--text-dim);
-            font-size: 0.9rem;
+            font-size: 0.78rem;
             font-weight: 500;
             text-decoration: none;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
             transition: all 0.2s ease;
-            z-index: 1000;
         }
 
         .home-btn:hover {
             background: rgba(255, 255, 255, 0.12);
             border-color: rgba(255, 255, 255, 0.3);
             color: var(--text);
-            transform: translateX(-2px);
         }
 
         .home-btn svg {
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
+        }
+
+        .slide-name {
+            margin-left: auto;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 900px) {
+            .slide { padding: 20px 24px; }
+            .slide-title { font-size: 1.6rem; }
+            .title-slide h1 { font-size: 2.4rem; }
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+            .glossary-grid, .ref-list { grid-template-columns: 1fr; }
+            .comp-fact-grid { grid-template-columns: 1fr; }
+            .comp-name { font-size: 1.4rem; }
+            .top-bar { padding: 8px 12px; }
         }
     </style>
 </head>
 <body>
-    <a href="index.html" class="home-btn" aria-label="Back to home">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M19 12H5"/>
-            <path d="M12 19l-7-7 7-7"/>
-        </svg>
-        <span>Back to home</span>
-    </a>
     <div class="progress" id="progress"></div>
+
+    <div class="top-bar">
+        <a href="index.html" class="home-btn" aria-label="Back to home">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5"/>
+                <path d="M12 19l-7-7 7-7"/>
+            </svg>
+            <span>Home</span>
+        </a>
+        <span class="slide-name" id="slideName">Competitive Landscape</span>
+    </div>
 
     <div class="deck" id="deck">
 
@@ -652,7 +661,6 @@
                         <span class="comp-tag">Boston, USA</span>
                     </div>
                 </div>
-                <span class="slide-badge">Slide 5</span>
             </div>
 
             <p style="color:#ddd;font-size:0.95rem;margin-bottom:14px;">The most direct competitor &mdash; "the world's first VR training platform made by nurses for nurses". Almost the same pitch as ARVR Israel.<sup class="ref"><a href="https://www.prnewswire.com/news-releases/labster-to-acquire-worlds-first-vr-training-platform-for-nursing-301400284.html" target="_blank">[5]</a></sup></p>
@@ -703,7 +711,6 @@
                         <span class="comp-tag">London + Somerville, MA</span>
                     </div>
                 </div>
-                <span class="slide-badge">Slide 6</span>
             </div>
 
             <p style="color:#ddd;font-size:0.95rem;margin-bottom:14px;">UK startup that already opened a US office in Massachusetts &mdash; the US is now their #1 target market.<sup class="ref"><a href="https://thenextweb.com/news/oxford-medical-simulation-secures-5m-growth-financing" target="_blank">[10]</a></sup></p>
@@ -754,7 +761,6 @@
                         <span class="comp-tag">Colorado, USA</span>
                     </div>
                 </div>
-                <span class="slide-badge">Slide 7</span>
             </div>
 
             <p style="color:#ddd;font-size:0.95rem;margin-bottom:14px;">VR training for high-risk clinical events &mdash; cardiac arrest (ACLS), childbirth emergencies, infection control. Distribution muscle through Relias (huge US healthcare LMS).<sup class="ref"><a href="https://www.prnewswire.com/news-releases/relias-partners-with-health-scholars-leading-healthcare-virtual-reality-company-to-improve-ob-provider-care-301566554.html" target="_blank">[14]</a></sup></p>
@@ -805,7 +811,6 @@
                         <span class="comp-tag">San Jose, CA</span>
                     </div>
                 </div>
-                <span class="slide-badge">Slide 8</span>
             </div>
 
             <p style="color:#ddd;font-size:0.95rem;margin-bottom:14px;">Multi-role VR simulation: nurses, doctors, paramedics and military medics. Largest VR-simulated patient case library in the world.<sup class="ref"><a href="https://www.simxvr.com/virtual-reality-medical-simulation-training-for-military/" target="_blank">[18]</a></sup></p>
@@ -856,7 +861,6 @@
                         <span class="comp-tag">San Francisco</span>
                     </div>
                 </div>
-                <span class="slide-badge">Slide 9</span>
             </div>
 
             <p style="color:#ddd;font-size:0.95rem;margin-bottom:14px;">The leader in VR surgical training &mdash; founded by a Harvard/UCLA pediatric orthopedic surgeon. <b>In Oct 2025 they launched "Osso Nurse Training"</b> &mdash; moving directly into ARVR's main lane.<sup class="ref"><a href="https://www.ossovr.com/press-releases/osso-vr-introduces-new-nursing-procedural-skills-training-platform-opens-early-access-for-healthcare-systems" target="_blank">[21]</a></sup></p>
@@ -907,7 +911,6 @@
                         <span class="comp-tag">London + Boston</span>
                     </div>
                 </div>
-                <span class="slide-badge">Slide 10</span>
             </div>
 
             <p style="color:#ddd;font-size:0.95rem;margin-bottom:14px;">UK / US surgical VR with haptic (touch feedback) gloves. Already shipped a serious app for the new Apple Vision Pro headset.<sup class="ref"><a href="https://www.immersivelearning.news/2025/02/19/fundamentalvr-unveils-version-two-of-apple-vision-pro-app-for-hands-on-medical-training-with-spatial-computing/" target="_blank">[25]</a></sup></p>
@@ -958,7 +961,6 @@
                         <span class="comp-tag">Vancouver, Canada</span>
                     </div>
                 </div>
-                <span class="slide-badge">Slide 11</span>
             </div>
 
             <p style="color:#ddd;font-size:0.95rem;margin-bottom:14px;">VR surgical training built by surgeons. Sold mainly to orthopedic residency programs and medical device companies.<sup class="ref"><a href="https://www.precisionostech.com/orthopedic-residency-program-and-precisionos-team-up-for-exclusive-3-year-collaboration-virtual-reality-development-and-curriculum-integration/" target="_blank">[29]</a></sup></p>
