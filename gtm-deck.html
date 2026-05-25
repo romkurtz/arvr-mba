@@ -1,0 +1,1110 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARVR Israel — US Market GTM Strategy</title>
+    <!-- Executive Urbanist & Inter Fonts for a clean, professional clinical-tech look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght=400;500;600;700&amp;family=Inter:wght=400;500;600&amp;display=swap" rel="stylesheet">
+    <!-- FontAwesome icons for professional visual anchors -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ==========================================================================
+           1. CORE PRESENTATION CONTAINER AND RESET ARCHITECTURE
+           ========================================================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        body {
+            background-color: #030712;
+            color: #f3f4f6;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ========== DECK FRAME ========== */
+        .deck {
+            position: relative;
+            flex: 1;
+            min-height: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 12px 20px;
+        }
+
+        /* Fixed 1280px x 720px presentation viewport to prevent any scaling shifts */
+        .slide-container {
+            width: min(1280px, 100%);
+            height: min(720px, 100%);
+            max-width: 100%;
+            max-height: 100%;
+            background-color: #0b0f19; /* Executive Dark Slate Deep Blue */
+            border-radius: 12px;
+            border: 1px solid rgba(16, 185, 129, 0.15); /* Emerald GTM Clinical Green accent */
+            padding: 40px 50px; /* Symmetrical executive padding */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            display: none;
+            flex-direction: column;
+            justify-content: flex-start;
+            position: absolute;
+            overflow: hidden;
+        }
+
+        .slide-container.active {
+            display: flex;
+        }
+
+        /* Abstract glowing radial shapes for visual continuity and brand identity */
+        .slide-container::before {
+            content: '';
+            position: absolute;
+            top: -15%;
+            right: -10%;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, rgba(0, 0, 0, 0) 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .slide-container > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ==========================================================================
+           2. TYPOGRAPHY AND HEADERS
+           ========================================================================== */
+        h1, h2, h3, h4 {
+            font-family: 'Urbanist', sans-serif;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 54px;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+
+        .slide-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 20px;
+            border-left: 4px solid #10b981; /* High-contrast emerald indicator line */
+            padding-left: 15px;
+            line-height: 1.1;
+            width: 100%;
+            text-align: left;
+        }
+
+        .slide-title span {
+            color: #10b981;
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #10b981;
+            margin-bottom: 8px;
+        }
+
+        p, li {
+            font-size: 14px;
+            line-height: 1.45;
+            color: #94a3b8;
+        }
+
+        strong {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        /* Standard layout structure wrapper to align title & viewport correctly */
+        .content-area {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        /* ==========================================================================
+           3. DATA TABLE MODULE
+           ========================================================================== */
+        .table-layout {
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        .table-layout table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .table-layout th, .table-layout td {
+            padding: 8px 12px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+            font-size: 12px;
+            line-height: 1.35;
+        }
+
+        /* Expanded, highly professional matrix layout styling */
+        .table-layout.expanded-matrix th {
+            padding: 12px 16px;
+            font-size: 12px;
+            line-height: 1.4;
+            background-color: #111827;
+            color: #ffffff;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .table-layout.expanded-matrix td {
+            padding: 11px 16px;
+            font-size: 12.5px;
+            line-height: 1.4;
+        }
+
+        .table-layout tr:hover td {
+            background-color: rgba(16, 185, 129, 0.02);
+        }
+
+        /* Dynamic Consulting Status Badges */
+        .status-badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            text-align: center;
+            width: 100%;
+        }
+
+        .status-badge.extreme {
+            background-color: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .status-badge.high {
+            background-color: rgba(59, 130, 246, 0.15);
+            color: #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .status-badge.moderate {
+            background-color: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .status-badge.restricted {
+            background-color: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .status-badge.wildcard {
+            background-color: rgba(59, 130, 246, 0.15);
+            color: #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .status-badge.trap {
+            background-color: rgba(107, 114, 128, 0.15);
+            color: #9ca3af;
+            border: 1px solid rgba(107, 114, 128, 0.3);
+        }
+
+        /* Skill Category Specific Badges */
+        .status-badge.verbal {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .status-badge.cognitive-verbal {
+            background-color: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .status-badge.procedural-motoric {
+            background-color: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+
+        .status-badge.fine-motoric {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        /* ==========================================================================
+           4. TWO COLUMN TILED TEXT STYLE
+           ========================================================================== */
+        .two-column.tiled {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            width: 100%;
+        }
+
+        .two-column.tiled > div {
+            background-color: #111827;
+            border-radius: 8px;
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .two-column.tiled > div:hover {
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        /* ==========================================================================
+           5. US TRAINING ECOSYSTEM TREE & NETWORK DIAGRAM MODULE
+           ========================================================================== */
+        .network-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 25px;
+            width: 100%;
+            position: relative;
+            margin-top: 10px;
+        }
+
+        /* Connecting connector flows */
+        .network-grid::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 28%;
+            width: 44%;
+            height: 2px;
+            border-top: 2px dashed rgba(16, 185, 129, 0.2);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .network-tier {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 1;
+        }
+
+        .tier-header {
+            background-color: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            border-radius: 6px;
+            padding: 8px 12px;
+            text-align: center;
+        }
+
+        .tier-header h4 {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #10b981;
+        }
+
+        .network-card {
+            background-color: #111827;
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            border-radius: 8px;
+            padding: 14px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 115px;
+        }
+
+        .network-card.glowing {
+            border: 1px solid rgba(16, 185, 129, 0.35);
+        }
+
+        .network-card.warning-border {
+            border: 1px solid rgba(245, 158, 11, 0.35);
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 6px;
+        }
+
+        .card-title {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .card-budget {
+            font-size: 11px;
+            font-weight: 700;
+            color: #10b981;
+            background-color: rgba(16, 185, 129, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .card-budget.warning-badge {
+            color: #f59e0b;
+            background-color: rgba(245, 158, 11, 0.1);
+        }
+
+        .card-interests {
+            font-size: 11.5px;
+            color: #94a3b8;
+            line-height: 1.4;
+        }
+
+        /* Icon indicators */
+        .card-icon {
+            font-size: 14px;
+            color: #10b981;
+        }
+        
+        .card-icon.warning-icon {
+            color: #f59e0b;
+        }
+
+        /* ==========================================================================
+           6. TWO-COLUMN SPLIT WITH IMAGE FOR CLINICAL CASE STUDY & SALES CYCLE
+           ========================================================================== */
+        .two-column-split {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 30px;
+            width: 100%;
+            height: 100%;
+        }
+
+        .case-study-content {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .case-metric-box {
+            background-color: #111827;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 8px;
+            padding: 12px 18px;
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 15px;
+        }
+
+        .case-metric-column {
+            border-right: 1px solid rgba(148, 163, 184, 0.1);
+            padding-right: 10px;
+        }
+        .case-metric-column:last-child {
+            border-right: none;
+            padding-right: 0;
+            padding-left: 10px;
+        }
+
+        .metric-value {
+            font-size: 26px;
+            font-weight: 700;
+            color: #10b981;
+        }
+
+        .metric-label {
+            font-size: 11px;
+            color: #ffffff;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 2px;
+        }
+
+        /* Probable Sales Cycle Pipeline Layout */
+        .pipeline-layout {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 2px;
+        }
+
+        .pipeline-stage {
+            background-color: rgba(17, 24, 39, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 6px;
+            padding: 8px 10px;
+            position: relative;
+        }
+
+        .stage-number {
+            font-size: 9px;
+            color: #10b981;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .stage-title {
+            font-size: 11px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 2px;
+        }
+
+        .stage-desc {
+            font-size: 10px;
+            color: #94a3b8;
+            line-height: 1.3;
+        }
+
+        /* Custom Visual VR Mockup Display instead of image URL */
+        .vr-visual-mockup {
+            width: 100%;
+            height: 420px;
+            border-radius: 10px;
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            background: linear-gradient(135deg, #0f172a 0%, #020617 100%);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            box-shadow: inset 0 0 40px rgba(16, 185, 129, 0.1);
+        }
+
+        .vr-hud-overlay {
+            position: absolute;
+            inset: 0;
+            background: repeating-radial-gradient(circle, rgba(16, 185, 129, 0.02) 0px, rgba(16, 185, 129, 0.02) 1px, transparent 1px, transparent 100px);
+            pointer-events: none;
+        }
+
+        .vr-patient-outline {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px dashed rgba(16, 185, 129, 0.15);
+            border-radius: 6px;
+            margin: 15px 0;
+            color: rgba(16, 185, 129, 0.4);
+            font-size: 28px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.05) 0%, transparent 80%);
+        }
+
+        /* ==========================================================================
+           7. FOOTER INSIGHT PANELS
+           ========================================================================== */
+        .bottom-insight {
+            background-color: rgba(16, 185, 129, 0.04);
+            border: 1px solid rgba(16, 185, 129, 0.12);
+            border-radius: 6px;
+            padding: 12px 18px; /* Standard premium padding for comfortable height */
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        .bottom-insight i {
+            color: #10b981;
+            font-size: 16px;
+        }
+
+        .bottom-insight p {
+            font-size: 12.5px;
+            color: #e2e8f0;
+            line-height: 1.4;
+        }
+
+        /* ========== NAV & CHROME ========== */
+        .progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #10b981, #34d399, #6ee7b7);
+            width: 0%;
+            z-index: 200;
+            transition: width 0.3s ease;
+        }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            flex-shrink: 0;
+            background: #030712;
+            border-bottom: 1px solid rgba(16, 185, 129, 0.12);
+        }
+
+        .home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 999px;
+            color: #94a3b8;
+            font-size: 0.78rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .home-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(16, 185, 129, 0.35);
+            color: #fff;
+        }
+
+        .home-btn svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .slide-name {
+            margin-left: auto;
+            font-size: 0.78rem;
+            color: #64748b;
+            letter-spacing: 1px;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 18px;
+            padding: 10px 20px;
+            flex-shrink: 0;
+            border-top: 1px solid rgba(16, 185, 129, 0.12);
+            background: #030712;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .nav-btn:hover {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: rgba(16, 185, 129, 0.35);
+        }
+
+        .nav-counter {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            min-width: 70px;
+            text-align: center;
+        }
+
+        @media (max-width: 900px) {
+            .slide-container {
+                padding: 28px 24px;
+            }
+            h1 { font-size: 40px; }
+            .slide-title { font-size: 26px; }
+            .top-bar, .nav { padding: 8px 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress" id="progress"></div>
+
+    <div class="top-bar">
+        <a href="index.html" class="home-btn" aria-label="Back to home">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5"/>
+                <path d="M12 19l-7-7 7-7"/>
+            </svg>
+            <span>Home</span>
+        </a>
+        <span class="slide-name" id="slideName">US Market GTM Strategy</span>
+    </div>
+
+    <div class="deck" id="deck">
+
+<!-- SLIDE 1: Title & Strategic Context -->
+<div class="slide-container active" id="slide1">
+    <div style="height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; max-width: 900px; padding-left: 20px;">
+        <p style="color: #10b981; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; font-size: 13px; margin-bottom: 15px;">U.S. GTM Commercial Launch</p>
+        <h1 style="margin-bottom: 20px;">VR Clinical Simulation:<br>The 3-Month Market Entry Plan</h1>
+        <p style="font-size: 16px; color: #94a3b8; line-height: 1.6; margin-bottom: 30px;">
+            A target-oriented strategy utilizing Israel&#39;s combat-tested emergency triage expertise to disrupt the U.S. clinical training market. Operating under <strong>Pathway B (Non-FDA)</strong> to secure fast ARR scalability.
+        </p>
+        <div style="display: flex; gap: 40px;">
+            <div>
+                <p style="font-size: 26px; font-weight: 700; color: #10b981;">Pathway B</p>
+                <p style="font-size: 12px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px;">Zero FDA 510(k) Delay</p>
+            </div>
+            <div style="border-left: 1px solid rgba(148, 163, 184, 0.2); padding-left: 40px;">
+                <p style="font-size: 26px; font-weight: 700; color: #3b82f6;">Combat Edge</p>
+                <p style="font-size: 12px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px;">Tactical Triage Methods</p>
+            </div>
+            <div style="border-left: 1px solid rgba(148, 163, 184, 0.2); padding-left: 40px;">
+                <p style="font-size: 26px; font-weight: 700; color: #ffffff;">70%</p>
+                <p style="font-size: 12px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px;">Senior Faculty Hours Saved</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 2: Clinical Suitability & ROI Matrix -->
+<div class="slide-container" id="slide2">
+    <h2 class="slide-title">Clinical Suitability &amp; ROI Matrix</h2>
+    <div class="content-area">
+        <div class="table-layout expanded-matrix">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 22%;">Medical Specialty</th>
+                        <th style="width: 15%;">GTM Priority Status</th>
+                        <th style="width: 17%;">Est. Field Value (US)</th>
+                        <th style="width: 15%;">Annual Training Spend</th>
+                        <th style="width: 14%;">Malpractice Payments</th>
+                        <th style="width: 10%;">Pathway Risk</th>
+                        <th style="width: 12%;">Skill Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Nursing Safety Checklists</strong></td>
+                        <td><span class="status-badge high">Tier 2 Target</span></td>
+                        <td><strong>$115.0 Billion</strong></td>
+                        <td>$1.2 Billion</td>
+                        <td><span style="color: #ef4444; font-weight: 600;">$650M+</span></td>
+                        <td><span class="status-badge extreme">None (B)</span></td>
+                        <td><span class="status-badge procedural-motoric">Procedural / Motor</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Micro-Precision Surgery</strong></td>
+                        <td><span class="status-badge restricted">Avoid (No GTM)</span></td>
+                        <td><strong>$45.0 Billion</strong></td>
+                        <td>$1.5 Billion</td>
+                        <td><span style="color: #ef4444; font-weight: 600;">$980M+</span></td>
+                        <td><span class="status-badge moderate">FDA Hazard</span></td>
+                        <td><span class="status-badge fine-motoric">Fine Motoric</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Emergency &amp; Trauma Triage</strong></td>
+                        <td><span class="status-badge extreme">Tier 1 Target</span></td>
+                        <td><strong>$28.0 Billion</strong></td>
+                        <td>$580 Million</td>
+                        <td><span style="color: #ef4444; font-weight: 600;">$450M+</span></td>
+                        <td><span class="status-badge extreme">None (B)</span></td>
+                        <td><span class="status-badge cognitive-verbal">Cognitive / Verbal</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Anesthesiology &amp; CRM</strong></td>
+                        <td><span class="status-badge high">Tier 2 Target</span></td>
+                        <td><strong>$22.0 Billion</strong></td>
+                        <td>$400 Million</td>
+                        <td><span style="color: #ef4444; font-weight: 600;">$380M+</span></td>
+                        <td><span class="status-badge extreme">None (B)</span></td>
+                        <td><span class="status-badge cognitive-verbal">Cognitive / Verbal</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>EMS &amp; Pre-Hospital Triage</strong></td>
+                        <td><span class="status-badge extreme">Tier 1 Target</span></td>
+                        <td><strong>$13.9 Billion</strong></td>
+                        <td>$350 Million</td>
+                        <td><span style="color: #ef4444; font-weight: 600;">$120M+</span></td>
+                        <td><span class="status-badge extreme">None (B)</span></td>
+                        <td><span class="status-badge procedural-motoric">Cognitive / Procedural</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Psychiatric De-escalation</strong></td>
+                        <td><span class="status-badge extreme">Tier 1 Target</span></td>
+                        <td><strong>$8.5 Billion</strong></td>
+                        <td>$180 Million</td>
+                        <td><span style="color: #ef4444; font-weight: 600;">$210M+</span></td>
+                        <td><span class="status-badge extreme">None (B)</span></td>
+                        <td><span class="status-badge verbal">Pure Verbal</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="bottom-insight">
+            <i class="fa-solid fa-lightbulb"></i>
+            <p><strong>GTM Takeaway:</strong> This comprehensive matrix <strong>confirms our strategic focus on the Nursing and Emergency fields (including EMS &amp; Trauma Triage)</strong>. These segments yield the absolute highest combined market value and offer the fastest path to contract conversion with zero haptic development delays.</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 3: US Medical Training Ecosystem Network Map -->
+<div class="slide-container" id="slide3">
+    <h2 class="slide-title">The U.S. Medical Training Ecosystem</h2>
+    <div class="content-area">
+        <div class="network-grid">
+            
+            <!-- Tier 1: Regulators & Capital -->
+            <div class="network-tier">
+                <div class="tier-header">
+                    <h4>Regulators &amp; Capital (Rulemakers)</h4>
+                </div>
+                
+                <div class="network-card">
+                    <div class="card-top">
+                        <span class="card-title">Medicare GME &amp; HRSA</span>
+                        <span class="card-budget">$18B+</span>
+                    </div>
+                    <p class="card-interests">Controls academic residency limits and nursing workforce training grants. Demands throughput validation.</p>
+                </div>
+                
+                <div class="network-card">
+                    <div class="card-top">
+                        <span class="card-title">State Nursing Boards</span>
+                        <span class="card-icon"><i class="fa-solid fa-scale-balanced"></i></span>
+                    </div>
+                    <p class="card-interests">Dictates acceptable VR simulation clinical replacement ratios (ranging from 25% to 75% caps) using INACSL standards.</p>
+                </div>
+            </div>
+
+            <!-- Tier 2: Institutional Decision Makers -->
+            <div class="network-tier">
+                <div class="tier-header">
+                    <h4>Institutional Buyers (Decision Makers)</h4>
+                </div>
+                
+                <div class="network-card glowing">
+                    <div class="card-top">
+                        <span class="card-title">Hospital CFOs &amp; IDNs</span>
+                        <span class="card-budget">$3.5B+</span>
+                    </div>
+                    <p class="card-interests"><strong>Economic Interest:</strong> Severe reduction of clinical risk / malpractice insurance payouts; optimization of nurse onboarding cycles.</p>
+                </div>
+
+                <div class="network-card glowing">
+                    <div class="card-top">
+                        <span class="card-title">Academic &amp; DoD Centers</span>
+                        <span class="card-budget">$1.5B+</span>
+                    </div>
+                    <p class="card-interests"><strong>Economic Interest:</strong> Academic simulation placement crises; military readiness (DHA/TCCC tactical trauma training).</p>
+                </div>
+            </div>
+
+            <!-- Tier 3: Operational & Technical Gatekeepers (Veto Power) -->
+            <div class="network-tier">
+                <div class="tier-header" style="background-color: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.25);">
+                    <h4 style="color: #f59e0b;">Operations &amp; Tech (Gatekeepers)</h4>
+                </div>
+                
+                <div class="network-card warning-border">
+                    <div class="card-top">
+                        <span class="card-title">Sim Directors (GHOSTS)</span>
+                        <span class="card-budget warning-badge">Veto Risk</span>
+                    </div>
+                    <p class="card-interests"><strong>Operational Veto:</strong> Can block deployment if software requires manual calibration, has low battery life, or heavy faculty onboarding.</p>
+                </div>
+                
+                <div class="network-card warning-border">
+                    <div class="card-top">
+                        <span class="card-title">InfoSec &amp; Compliance</span>
+                        <span class="card-icon warning-icon"><i class="fa-solid fa-shield-halved"></i></span>
+                    </div>
+                    <p class="card-interests"><strong>Technical Veto:</strong> Absolute insistence on zero Patient Health Info (PHI) stored locally on headsets to prevent HIPAA compliance breaches.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="bottom-insight" style="background-color: rgba(245, 158, 11, 0.04); border: 1px solid rgba(245, 158, 11, 0.12);">
+            <i class="fa-solid fa-triangle-exclamation" style="color: #f59e0b;"></i>
+            <p style="color: #e2e8f0;"><strong>Gatekeeper Strategy:</strong> Operations and IT are <em>gatekeepers</em>, not economic buyers. GTM pitches must proactively assure InfoSec of 100% cloud-based, zero-PHI architecture, and Sim Directors of zero-calibration headset deployments.</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 4: Target Segments: Nursing & EMS Ecosystems -->
+<div class="slide-container" id="slide4">
+    <h2 class="slide-title">Target Segments: Nursing &amp; EMS</h2>
+    <div class="content-area">
+        <div class="two-column tiled">
+            <div>
+                <span class="icon-container" style="display:inline-block; margin-bottom:15px; font-size:32px; color:#10b981;">
+                    <i class="fa-solid fa-user-nurse"></i>
+                </span>
+                <h3 style="color:#ffffff; font-weight:700; margin-bottom:15px;">Nursing Training Ecosystem</h3>
+                <p style="text-align:left; margin-bottom:12px; font-size:13.5px; line-height:1.5;">
+                    <strong>Regulatory Catalyst:</strong> State Boards of Nursing (BON) codifying NCSBN and INACSL standards, permitting up to <strong>50% clinical hour replacement</strong> with verified simulation.
+                </p>
+                <p style="text-align:left; margin-bottom:12px; font-size:13.5px; line-height:1.5;">
+                    <strong>Core Operational Pain:</strong> Severe clinical placement slot shortage. Physical hospital capacity limits prevent universities from scaling class sizes, constraining tuition growth.
+                </p>
+                <p style="text-align:left; font-size:13.5px; line-height:1.5; color:#94a3b8;">
+                    <strong>Primary GTM Vehicles:</strong> Higher Ed tuition CapEx and federal HRSA workforce grants. Sales pitch focused on <em>immediate class size expansion without local hospital site dependency</em>.
+                </p>
+            </div>
+            <div>
+                <span class="icon-container" style="display:inline-block; margin-bottom:15px; font-size:32px; color:#10b981;">
+                    <i class="fa-solid fa-truck-medical"></i>
+                </span>
+                <h3 style="color:#ffffff; font-weight:700; margin-bottom:15px;">Emergency &amp; EMS Ecosystem</h3>
+                <p style="text-align:left; margin-bottom:12px; font-size:13.5px; line-height:1.5;">
+                    <strong>Regulatory Catalyst:</strong> CoAEMSP and NREMT Student Minimum Competency (SMC) guidelines approving simulation scenarios to build student psychomotor and clinical portfolios.
+                </p>
+                <p style="text-align:left; margin-bottom:12px; font-size:13.5px; line-height:1.5;">
+                    <strong>Core Operational Pain:</strong> Cognitive overload and critical triage errors during rare, low-frequency high-acuity (LFHA) crisis events (e.g., pediatric arrests, mass-casualty trauma).
+                </p>
+                <p style="text-align:left; font-size:13.5px; line-height:1.5; color:#94a3b8;">
+                    <strong>Primary GTM Vehicles:</strong> Municipal fire department training budgets, private EMS networks, and DoD/DHA defense contracts. Pitch focused on <em>Israeli tactical triage efficiency</em>.
+                </p>
+            </div>
+        </div>
+        <div class="bottom-insight">
+            <i class="fa-solid fa-bullseye"></i>
+            <p><strong>GTM Strategic Alignment:</strong> While the Nursing segment unlocks mass-volume academic ARR via clinical replacement regulations, the Emergency &amp; EMS segment perfectly activates ARVR&#39;s <strong>Israeli combat-triage unfair advantage</strong> to command high-margin municipal and federal defense licensing contracts.</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 5: Case Study & 90-Day Sales Cycle -->
+<div class="slide-container" id="slide5">
+    <h2 class="slide-title">Case Study &amp; 90-Day Sales Cycle</h2>
+    <div class="content-area">
+        <div class="two-column-split">
+            <div class="case-study-content">
+                <!-- Empirical Case Study Details -->
+                <div style="margin-bottom: 3px;">
+                    <h3 style="color:#ffffff; font-size:18px; font-weight:700; margin-bottom:5px;">Validation: Real Peer Products in US Networks</h3>
+                    <p style="font-size:12.5px; line-height:1.45; color:#94a3b8;">
+                        This business model is validated by <strong>Oxford Medical Simulation (OMS)</strong> and <strong>SimX</strong>. These non-FDA "Pathway B" pioneers proved massive software ROI and rapid university/hospital integrations.
+                    </p>
+                </div>
+
+                <!-- Empirical ROI Benchmarks (Real Data from Sheffield Hallam and Univ. of Lincoln) -->
+                <div class="case-metric-box">
+                    <div class="case-metric-column">
+                        <div class="metric-value">74%</div>
+                        <div class="metric-label">Operational Savings</div>
+                        <p style="font-size:10.5px; color:#64748b; margin-top:3px; line-height:1.35;">Proven reduction in staffing, physical moulage, and mannequin setup costs (OMS).</p>
+                    </div>
+                    <div class="case-metric-column">
+                        <div class="metric-value">200 Hr</div>
+                        <div class="metric-label">Faculty Lab Time Saved</div>
+                        <p style="font-size:10.5px; color:#64748b; margin-top:3px; line-height:1.35;">Unlocks faculty from routine proctoring using automated assessment checklists.</p>
+                    </div>
+                </div>
+
+                <!-- Probable GTM Sales Cycle -->
+                <div style="margin-top: 3px;">
+                    <h3 style="color:#ffffff; font-size:15px; font-weight:700; margin-bottom:5px;">The "Pathway B" 90-Day Enterprise Sales Cycle</h3>
+                    <div class="pipeline-layout">
+                        <div class="pipeline-stage">
+                            <div class="stage-number">01. DAYS 1-30</div>
+                            <div class="stage-title">Dean / CFO Alignment</div>
+                            <div class="stage-desc">Pitching faculty hours saved and clinical hour replacement ratios.</div>
+                        </div>
+                        <div class="pipeline-stage">
+                            <div class="stage-number">02. DAYS 31-60</div>
+                            <div class="stage-title">InfoSec Sign-off</div>
+                            <div class="stage-desc">Proving zero local PHI or HIPAA storage on the headset hardware.</div>
+                        </div>
+                        <div class="pipeline-stage">
+                            <div class="stage-number">03. DAYS 61-90</div>
+                            <div class="stage-title">Pilot to ARR SaaS</div>
+                            <div class="stage-desc">Rapid on-boarding of student cohorts to annual license fees.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CSS-based HUD Visual Mockup: Simulating VR grading environment -->
+            <div class="vr-visual-mockup">
+                <div class="vr-hud-overlay"></div>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                    <div style="background-color: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); padding: 4px 8px; border-radius: 4px;">
+                        <span style="font-size: 10px; font-weight: 700; color: #10b981; letter-spacing: 0.05em;"><i class="fa-solid fa-circle-play"></i> VR LIVE: CLINICAL TRIAGE</span>
+                    </div>
+                    <span style="font-size: 11px; color: #94a3b8;"><i class="fa-regular fa-clock"></i> 04:12 Min</span>
+                </div>
+
+                <div class="vr-patient-outline">
+                    <div style="text-align: center;">
+                        <i class="fa-solid fa-user-injured" style="font-size: 42px; margin-bottom: 10px;"></i>
+                        <p style="font-size: 12px; font-weight: 500;">PATIENT TRIAGE DEMO</p>
+                    </div>
+                </div>
+
+                <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(148, 163, 184, 0.15); border-radius: 6px; padding: 10px;">
+                    <p style="font-size: 11px; font-weight: 600; color: #ffffff; margin-bottom: 4px;">Automated checklist grading tracking:</p>
+                    <div style="display: flex; flex-direction: column; gap: 4px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 10px;">
+                            <span style="color: #10b981;"><i class="fa-regular fa-circle-check"></i> Airway Assessment Secured</span>
+                            <span style="color: #10b981; font-weight: 600;">PASS (1.2s)</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 10px;">
+                            <span style="color: #10b981;"><i class="fa-regular fa-circle-check"></i> Tourniquet Placement</span>
+                            <span style="color: #10b981; font-weight: 600;">PASS (4.5s)</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 10px;">
+                            <span style="color: #ef4444;"><i class="fa-regular fa-circle-xmark"></i> Direct IV Access Protocol</span>
+                            <span style="color: #ef4444; font-weight: 600;">FAILED ORDER</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-insight">
+            <i class="fa-solid fa-scale-balanced"></i>
+            <p><strong>Clinical Efficacy Comparison:</strong> York Health Economics Consortium found the average cost per VR training use sits between <strong>$2.22 - $14.38</strong>, compared to <strong>$28.38 - $394.95</strong> for a traditional high-fidelity mannequin scenario run.</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 6: US State Selection Dashboard -->
+<div class="slide-container" id="slide6">
+    <h2 class="slide-title">U.S. State Selection Dashboard</h2>
+    <div class="content-area">
+        <div class="table-layout">
+            <table>
+                <thead>
+                    <tr>
+                        <th>U.S. State candidate</th>
+                        <th>Nursing Schools</th>
+                        <th>VR Hour Allowance</th>
+                        <th>Active Hospitals</th>
+                        <th>Annual Malpractice Payouts</th>
+                        <th>GTM Priority Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Texas</strong></td>
+                        <td>~180 Schools</td>
+                        <td>50% Cap Limit</td>
+                        <td>~370 Hospitals</td>
+                        <td>$300M+</td>
+                        <td><span class="status-badge extreme">Critical Bullseye</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Florida</strong></td>
+                        <td>~216 Schools</td>
+                        <td>50% Cap Limit</td>
+                        <td>~226 Hospitals</td>
+                        <td>$350M+</td>
+                        <td><span class="status-badge high">High Priority</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pennsylvania</strong></td>
+                        <td>~105 Schools</td>
+                        <td>50% Cap Limit</td>
+                        <td>~179 Hospitals</td>
+                        <td>$320M+</td>
+                        <td><span class="status-badge high">High Priority</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ohio</strong></td>
+                        <td>~110 Schools</td>
+                        <td>50% Cap Limit</td>
+                        <td>~143 Hospitals</td>
+                        <td>$180M+</td>
+                        <td><span class="status-badge high">High Priority</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Georgia</strong></td>
+                        <td>~79 Schools</td>
+                        <td>75% Cap Limit</td>
+                        <td>~109 Hospitals</td>
+                        <td>$140M+</td>
+                        <td><span class="status-badge wildcard">The Wildcard</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>California</strong></td>
+                        <td>~308 Schools</td>
+                        <td>25% Cap Limit</td>
+                        <td>~332 Hospitals</td>
+                        <td>$300M+</td>
+                        <td><span class="status-badge trap">The Volume Trap</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="bottom-insight">
+            <i class="fa-solid fa-chart-line"></i>
+            <p><strong>Core GTM Strategy:</strong> Texas and Florida represent prime markets over California. California&#39;s restrictive 25% clinical hourly cap acts as a volume trap, whereas 50% state caps in Texas/Florida immediately solve the clinical placement space crisis.</p>
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    <div class="nav">
+        <button class="nav-btn" id="prevBtn">&larr; Prev</button>
+        <div class="nav-counter" id="counter">1 / 6</div>
+        <button class="nav-btn" id="nextBtn">Next &rarr;</button>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide-container');
+        const total = slides.length;
+        let current = 0;
+
+        const counter  = document.getElementById('counter');
+        const prevBtn  = document.getElementById('prevBtn');
+        const nextBtn  = document.getElementById('nextBtn');
+        const progress = document.getElementById('progress');
+
+        function show(i) {
+            current = Math.max(0, Math.min(total - 1, i));
+            slides.forEach((s, idx) => s.classList.toggle('active', idx === current));
+            counter.textContent = (current + 1) + ' / ' + total;
+            progress.style.width = ((current + 1) / total * 100) + '%';
+        }
+
+        prevBtn.addEventListener('click', () => show(current - 1));
+        nextBtn.addEventListener('click', () => show(current + 1));
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+                e.preventDefault();
+                show(current + 1);
+            } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                e.preventDefault();
+                show(current - 1);
+            } else if (e.key === 'Home') {
+                show(0);
+            } else if (e.key === 'End') {
+                show(total - 1);
+            }
+        });
+
+        show(0);
+    </script>
+</body>
+</html>
